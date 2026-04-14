@@ -1,0 +1,12 @@
+export { Hero } from './Hero';
+export { Features } from './Features';
+export { About } from './About';
+export { HowItWorks } from './HowItWorks';
+export { Download } from './Download';
+export { Testimonials } from './Testimonials';
+export { Contact } from './Contact';
+export { KissHero } from './KissHero';
+export { KissWhyBuy } from './KissWhyBuy';
+export { KissPlans } from './KissPlans';
+export { KissPaymentForm } from './KissPaymentForm';
+export { KissReassurance } from './KissReassurance';
