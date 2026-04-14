@@ -435,13 +435,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: var(--shadow-gold);
 }
 
-.kiss-plan__badge--best {
-  background: var(--grad);
-  box-shadow: 0 4px 18px rgba(255, 31, 120, 0.35);
+.kiss-plan__badge--gold {
+  background: var(--gold-grad);
+  box-shadow: var(--shadow-gold);
 }
 
 /* Plan populaire — bordure or */
 .kiss-plan--popular {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Plan gold (best) — bordure or */
+.kiss-plan--best {
   border-color: var(--gold);
   box-shadow: var(--shadow-gold);
 }
@@ -1039,4 +1045,81 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .kiss-header__back span {
     display: none;
   }
+}
+
+/* ──────────────────────────────────────────────────────────
+   13. SKELETON LOADING
+────────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    #f0f0f5 50%,
+    var(--border) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-card {
+  pointer-events: none;
+}
+
+.skeleton-card .skeleton-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.skeleton-card .skeleton-quantity {
+  margin: 20px auto 8px;
+}
+
+.skeleton-card .skeleton-label {
+  margin: 0 auto 16px;
+}
+
+.skeleton-card .skeleton-price {
+  margin: 0 auto 20px;
+}
+
+.skeleton-card .skeleton-desc {
+  margin: 0 auto 24px;
+}
+
+.skeleton-card .skeleton-btn {
+  margin: 0 auto;
+}
+
+/* ──────────────────────────────────────────────────────────
+   14. ERROR & EMPTY STATES
+────────────────────────────────────────────────────────── */
+.kiss-error,
+.kiss-empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--bg-light);
+  border-radius: var(--radius-lg);
+  margin: 40px 0;
+}
+
+.kiss-error__message {
+  font-size: 1.1rem;
+  color: var(--text-body);
+  margin-bottom: 20px;
+}
+
+.kiss-error__retry {
+  display: inline-flex;
+}
+
+.kiss-empty p {
+  font-size: 1rem;
+  color: var(--text-light);
 }
