@@ -4,6 +4,5 @@ export * from './about';
 export * from './steps';
 export * from './testimonials';
 export * from './plans';
-export * from './countries';
 export * from './paymentMethods';
 export * from './site';

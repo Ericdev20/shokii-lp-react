@@ -4,3 +4,4 @@ export { useMediaQuery } from './useMediaQuery';
 export { usePageMeta } from './usePageMeta';
 export { useJsonLd } from './useJsonLd';
 export { usePackAbonnement } from './usePackAbonnement';
+export { useCountries } from './useCountries';

@@ -1,5 +1,4 @@
-import { useState, type FormEvent, type ChangeEvent } from 'react';
-import { Reveal } from '../ui';
+import { useState, type FormEvent } from 'react';
 
 interface FormErrors {
   nom?: string;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { SITE_META, KISS_META, SIGNUP_URL, CONTACT_EMAIL, CONTACT_PHONE } from '../constants';
+import { SITE_META, KISS_META, CONTACT_EMAIL, CONTACT_PHONE } from '../constants';
 
 export function useJsonLd() {
   const location = useLocation();

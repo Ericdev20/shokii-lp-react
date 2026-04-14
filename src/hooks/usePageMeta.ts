@@ -40,7 +40,7 @@ export function usePageMeta({ title, description, ogType = 'website', canonicalP
   }, [title, description, ogType, canonicalPath]);
 }
 
-function setOrCreateMeta(key: string, attr: string, attrName: string, content: string) {
+function setOrCreateMeta(key: string, attr: string, _attrName: string, content: string) {
   let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
   if (!el) {
     el = document.createElement('meta');

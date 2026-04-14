@@ -1,5 +1,3 @@
-import type { Feature } from '../types';
-
 export interface AboutCard {
   icon: string; // asset path
   title: string;

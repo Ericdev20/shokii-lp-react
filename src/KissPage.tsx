@@ -16,6 +16,10 @@ export function KissPage() {
     setSelection(s);
   }, []);
 
+  const handleCountryChange = useCallback((countryCode: string) => {
+    console.log('Pays sélectionné:', countryCode);
+  }, []);
+
   const handleScrollToPayment = useCallback(() => {
     const el = document.getElementById('payment');
     if (el) {
@@ -34,7 +38,10 @@ export function KissPage() {
           onScrollToPayment={handleScrollToPayment}
         />
         <section ref={paymentRef as React.RefObject<HTMLElement | null>}>
-          <KissPaymentForm selection={selection} />
+          <KissPaymentForm 
+            selection={selection} 
+            onCountryChange={handleCountryChange}
+          />
         </section>
         <KissReassurance />
       </main>

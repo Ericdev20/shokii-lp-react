@@ -1,5 +1,5 @@
 import { Reveal } from '../ui';
-import { aboutCards, SIGNUP_URL } from '../../constants';
+import { aboutCards } from '../../constants';
 
 export function About() {
   return (

@@ -1,9 +1,9 @@
-import { forwardRef, type ReactNode, type HTMLAttributes } from 'react';
+import { forwardRef, type ReactNode, type HTMLAttributes, type ElementType } from 'react';
 import { useReveal } from '../../hooks';
 
 interface RevealProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
   staggerDelay?: number;
   className?: string;
 }

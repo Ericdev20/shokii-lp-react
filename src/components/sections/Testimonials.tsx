@@ -10,7 +10,7 @@ export function Testimonials() {
     const track = trackRef.current;
     if (!track) return;
 
-    const firstCard = track.querySelector('.testimonial-card');
+    const firstCard = track.querySelector('.testimonial-card') as HTMLElement | null;
     if (!firstCard) return;
 
     const cardWidth = firstCard.offsetWidth;

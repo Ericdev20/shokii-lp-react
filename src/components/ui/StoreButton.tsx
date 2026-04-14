@@ -1,4 +1,4 @@
-import type { AnchorHTMLAttributes, ReactNode } from 'react';
+import type { AnchorHTMLAttributes } from 'react';
 
 interface StoreButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   iconSrc: string;

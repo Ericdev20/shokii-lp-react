@@ -1,8 +1,9 @@
 import { useState, useCallback, useEffect } from 'react';
-import { countries } from '../../constants/countries';
 import { paymentMethods } from '../../constants/paymentMethods';
 import { formatNumber } from '../../lib/format';
 import { Reveal } from '../ui/Reveal';
+import { CountrySelect } from '../ui/CountrySelect';
+import { useCountries } from '../../hooks/useCountries';
 
 interface PlanSelection {
   kiss: number;
@@ -12,19 +13,27 @@ interface PlanSelection {
 
 interface KissPaymentFormProps {
   selection: PlanSelection | null;
+  onCountryChange?: (countryCode: string) => void;
 }
 
 type PaymentState = 'idle' | 'processing' | 'success';
 
-export function KissPaymentForm({ selection }: KissPaymentFormProps) {
+export function KissPaymentForm({ selection, onCountryChange }: KissPaymentFormProps) {
+  const { countries, loading, error, detectedCountry, retry } = useCountries();
   const [country, setCountry] = useState('');
   const [phone, setPhone] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const [paymentState, setPaymentState] = useState<PaymentState>('idle');
 
+  useEffect(() => {
+    if (detectedCountry && !country) {
+      setCountry(detectedCountry);
+    }
+  }, [detectedCountry, country]);
+
   const selectedCountry = countries.find((c) => c.code === country);
-  const dialCode = selectedCountry?.dialCode ?? '+229';
-  const phonePlaceholder = selectedCountry?.phonePlaceholder ?? '01 00 00 00 00';
+  const dialCode = selectedCountry?.dialCode ?? '';
+  const phonePlaceholder = selectedCountry ? `${selectedCountry.flag} Numéro sans indicatif` : 'XX XX XX XX';
 
   const isFormValid =
     !!country &&
@@ -32,9 +41,11 @@ export function KissPaymentForm({ selection }: KissPaymentFormProps) {
     !!paymentMethod &&
     selection !== null;
 
-  const handleCountryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCountry(e.target.value);
-  }, []);
+  const handleCountryChange = useCallback((code: string) => {
+    setCountry(code);
+    setPhone('');
+    onCountryChange?.(code);
+  }, [onCountryChange]);
 
   const handlePhoneChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(e.target.value);
@@ -50,7 +61,6 @@ export function KissPaymentForm({ selection }: KissPaymentFormProps) {
 
     setPaymentState('processing');
 
-    // Simulate payment processing: 2s spinner → 3s success → reset
     setTimeout(() => {
       setPaymentState('success');
       setTimeout(() => {
@@ -62,7 +72,6 @@ export function KissPaymentForm({ selection }: KissPaymentFormProps) {
     }, 2000);
   }, [isFormValid]);
 
-  // Reset payment state when selection changes
   useEffect(() => {
     setPaymentState('idle');
   }, [selection]);
@@ -81,27 +90,18 @@ export function KissPaymentForm({ selection }: KissPaymentFormProps) {
           </p>
         </Reveal>
 
-        <form className="kiss-form" id="paymentForm" novalidate onSubmit={handleSubmit}>
+        <form className="kiss-form" id="paymentForm" onSubmit={handleSubmit}>
           <div className="kiss-form__row">
             <div className="kiss-form__group">
-              <label htmlFor="country">Pays</label>
-              <select
-                id="country"
-                name="country"
+              <label>Pays</label>
+              <CountrySelect
+                countries={countries}
                 value={country}
                 onChange={handleCountryChange}
-                required
-                aria-label="Sélectionne ton pays"
-              >
-                <option value="" disabled>
-                  Sélectionne ton pays
-                </option>
-                {countries.map((c) => (
-                  <option key={c.code} value={c.code}>
-                    {c.flag} {c.name}
-                  </option>
-                ))}
-              </select>
+                disabled={loading}
+                error={error}
+                onRetry={retry}
+              />
             </div>
           </div>
 
@@ -109,9 +109,11 @@ export function KissPaymentForm({ selection }: KissPaymentFormProps) {
             <div className="kiss-form__group">
               <label htmlFor="phone">Numéro de téléphone</label>
               <div className="kiss-form__phone">
-                <span className="kiss-form__phone-code" id="phoneCode">
-                  {dialCode}
-                </span>
+                {dialCode && (
+                  <span className="kiss-form__phone-code" id="phoneCode">
+                    {dialCode}
+                  </span>
+                )}
                 <input
                   type="tel"
                   id="phone"
@@ -121,6 +123,7 @@ export function KissPaymentForm({ selection }: KissPaymentFormProps) {
                   placeholder={phonePlaceholder}
                   required
                   aria-label="Numéro de téléphone"
+                  disabled={!country}
                 />
               </div>
             </div>
