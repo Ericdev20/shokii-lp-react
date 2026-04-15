@@ -1,9 +1,11 @@
 import { useState, useCallback, useEffect } from 'react';
-import { paymentMethods } from '../../constants/paymentMethods';
 import { formatNumber } from '../../lib/format';
 import { Reveal } from '../ui/Reveal';
 import { CountrySelect } from '../ui/CountrySelect';
+import { PaymentMethodsList } from '../ui/PaymentMethodCard';
 import { useCountries } from '../../hooks/useCountries';
+import { usePaymentMethods } from '../../hooks/usePaymentMethods';
+import type { PaymentMethod } from '../../services/paymentMethodsApi';
 
 interface PlanSelection {
   kiss: number;
@@ -19,11 +21,13 @@ interface KissPaymentFormProps {
 type PaymentState = 'idle' | 'processing' | 'success';
 
 export function KissPaymentForm({ selection, onCountryChange }: KissPaymentFormProps) {
-  const { countries, loading, error, detectedCountry, retry } = useCountries();
+  const { countries, loading: countriesLoading, error: countriesError, detectedCountry, retry: retryCountries } = useCountries();
   const [country, setCountry] = useState('');
   const [phone, setPhone] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [selectedMethod, setSelectedMethod] = useState<PaymentMethod | null>(null);
   const [paymentState, setPaymentState] = useState<PaymentState>('idle');
+
+  const { methods, loading: methodsLoading, error: methodsError, retry: retryMethods } = usePaymentMethods(country || null);
 
   useEffect(() => {
     if (detectedCountry && !country) {
@@ -38,12 +42,13 @@ export function KissPaymentForm({ selection, onCountryChange }: KissPaymentFormP
   const isFormValid =
     !!country &&
     phone.trim().length > 0 &&
-    !!paymentMethod &&
+    selectedMethod !== null &&
     selection !== null;
 
   const handleCountryChange = useCallback((code: string) => {
     setCountry(code);
     setPhone('');
+    setSelectedMethod(null);
     onCountryChange?.(code);
   }, [onCountryChange]);
 
@@ -51,8 +56,8 @@ export function KissPaymentForm({ selection, onCountryChange }: KissPaymentFormP
     setPhone(e.target.value);
   }, []);
 
-  const handlePaymentMethodSelect = useCallback((methodId: string) => {
-    setPaymentMethod(methodId);
+  const handleMethodSelect = useCallback((method: PaymentMethod) => {
+    setSelectedMethod(method);
   }, []);
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
@@ -67,7 +72,7 @@ export function KissPaymentForm({ selection, onCountryChange }: KissPaymentFormP
         setPaymentState('idle');
         setCountry('');
         setPhone('');
-        setPaymentMethod('');
+        setSelectedMethod(null);
       }, 3000);
     }, 2000);
   }, [isFormValid]);
@@ -98,9 +103,9 @@ export function KissPaymentForm({ selection, onCountryChange }: KissPaymentFormP
                 countries={countries}
                 value={country}
                 onChange={handleCountryChange}
-                disabled={loading}
-                error={error}
-                onRetry={retry}
+                disabled={countriesLoading}
+                error={countriesError}
+                onRetry={retryCountries}
               />
             </div>
           </div>
@@ -132,30 +137,14 @@ export function KissPaymentForm({ selection, onCountryChange }: KissPaymentFormP
           <div className="kiss-form__row">
             <div className="kiss-form__group">
               <label>Mode de paiement</label>
-              <div className="kiss-form__methods" role="radiogroup" aria-label="Mode de paiement">
-                {paymentMethods.map((method) => (
-                  <label
-                    key={method.id}
-                    className="kiss-form__method"
-                    data-method={method.id}
-                  >
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      value={method.id}
-                      checked={paymentMethod === method.id}
-                      onChange={() => handlePaymentMethodSelect(method.id)}
-                    />
-                    <span className="kiss-form__method-inner">
-                      <span
-                        className={`kiss-form__method-logo ${method.logoClass}`}
-                        dangerouslySetInnerHTML={{ __html: method.logoContent }}
-                      />
-                      <span className="kiss-form__method-name">{method.name}</span>
-                    </span>
-                  </label>
-                ))}
-              </div>
+              <PaymentMethodsList
+                methods={methods}
+                selectedMethod={selectedMethod}
+                onSelect={handleMethodSelect}
+                loading={methodsLoading}
+                error={methodsError}
+                onRetry={retryMethods}
+              />
             </div>
           </div>
 
@@ -188,17 +177,17 @@ export function KissPaymentForm({ selection, onCountryChange }: KissPaymentFormP
             >
               {paymentState === 'processing' ? (
                 <>
-                  <i className="fa-solid fa-spinner fa-spin"></i>
+                  <i className="fa-solid fa-spinner fa-spin" />
                   Traitement en cours...
                 </>
               ) : paymentState === 'success' ? (
                 <>
-                  <i className="fa-solid fa-check-circle"></i>
+                  <i className="fa-solid fa-check-circle" />
                   Paiement réussi !
                 </>
               ) : (
                 <>
-                  <i className="fa-solid fa-lock"></i>
+                  <i className="fa-solid fa-lock" />
                   Payer maintenant
                 </>
               )}

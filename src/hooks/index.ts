@@ -5,3 +5,4 @@ export { usePageMeta } from './usePageMeta';
 export { useJsonLd } from './useJsonLd';
 export { usePackAbonnement } from './usePackAbonnement';
 export { useCountries } from './useCountries';
+export { usePaymentMethods } from './usePaymentMethods';

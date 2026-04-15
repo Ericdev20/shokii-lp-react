@@ -3,3 +3,4 @@ export { GradientButton } from './GradientButton';
 export { StoreButton } from './StoreButton';
 export { Skeleton, SkeletonPlanCard } from './Skeleton';
 export { CountrySelect } from './CountrySelect';
+export { PaymentMethodCard, PaymentMethodsList } from './PaymentMethodCard';
