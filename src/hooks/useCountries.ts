@@ -17,23 +17,6 @@ function mapApiToCountry(apiCountry: ApiCountry): Country {
   };
 }
 
-async function detectCountryByIP(): Promise<string | null> {
-  try {
-    const res = await fetch('https://ip-api.com/json/?fields=countryCode');
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.countryCode ?? null;
-  } catch {
-    return null;
-  }
-}
-
-function detectCountryFromNavigator(): string | null {
-  const lang = navigator.language;
-  const match = lang.match(/[A-Z]{2}$/i);
-  return match ? match[0].toUpperCase() : null;
-}
-
 interface UseCountriesResult {
   countries: Country[];
   loading: boolean;
@@ -55,16 +38,7 @@ export function useCountries(): UseCountriesResult {
     try {
       const data = await fetchCountries();
       setAllCountries(data);
-
-      const detectedByIP = await detectCountryByIP();
-      const detectedByNavigator = detectCountryFromNavigator();
-
-      const detected = 
-        (detectedByIP && data.some(c => c.Iso2 === detectedByIP)) ? detectedByIP :
-        (detectedByNavigator && data.some(c => c.Iso2 === detectedByNavigator)) ? detectedByNavigator :
-        'BJ'; // Benin par défaut
-
-      setDetectedCountry(detected);
+      setDetectedCountry('BJ'); // Benin par défaut
     } catch (err) {
       setError('Impossible de charger les pays');
       setAllCountries([]);
