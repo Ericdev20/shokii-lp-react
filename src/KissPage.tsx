@@ -5,10 +5,13 @@ import { KissWhyBuy } from './components/sections/KissWhyBuy';
 import { KissPlans } from './components/sections/KissPlans';
 import { KissPaymentForm } from './components/sections/KissPaymentForm';
 import { KissReassurance } from './components/sections/KissReassurance';
+import { SessionLoading, SessionError } from './components/ui/SessionStatus';
+import { usePaymentSession } from './hooks/usePaymentSession';
 import { useState, useCallback, useRef } from 'react';
 import type { PlanSelection } from './components/sections/KissPlans';
 
 export function KissPage() {
+  const session = usePaymentSession();
   const [selection, setSelection] = useState<PlanSelection | null>(null);
   const paymentRef = useRef<HTMLElement | null>(null);
 
@@ -31,19 +34,28 @@ export function KissPage() {
     <>
       <KissHeader />
       <main>
-        <KissHero />
-        <KissWhyBuy />
-        <KissPlans
-          onSelectionChange={handleSelectionChange}
-          onScrollToPayment={handleScrollToPayment}
-        />
-        <section ref={paymentRef as React.RefObject<HTMLElement | null>}>
-          <KissPaymentForm 
-            selection={selection} 
-            onCountryChange={handleCountryChange}
-          />
-        </section>
-        <KissReassurance />
+        {session.loading ? (
+          <SessionLoading />
+        ) : session.error ? (
+          <SessionError message={session.error} />
+        ) : (
+          <>
+            <KissHero />
+            <KissWhyBuy />
+            <KissPlans
+              onSelectionChange={handleSelectionChange}
+              onScrollToPayment={handleScrollToPayment}
+            />
+            <section ref={paymentRef as React.RefObject<HTMLElement | null>}>
+              <KissPaymentForm 
+                selection={selection} 
+                user={session.user}
+                onCountryChange={handleCountryChange}
+              />
+            </section>
+            <KissReassurance />
+          </>
+        )}
       </main>
       <KissFooter />
     </>

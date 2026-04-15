@@ -14,6 +14,8 @@ export interface Plan {
   price: number;
   badge?: 'popular' | 'best';
   description: string;
+  duree: string;
+  benefits: string | null;
 }
 
 export function mapApiToPlan(apiPack: ApiPackAbonnement): Plan {
@@ -23,5 +25,7 @@ export function mapApiToPlan(apiPack: ApiPackAbonnement): Plan {
     price: apiPack.prix,
     badge: apiPack.type === 'gold' ? 'best' : undefined,
     description: apiPack.description,
+    duree: apiPack.duree,
+    benefits: apiPack.benefits,
   };
 }

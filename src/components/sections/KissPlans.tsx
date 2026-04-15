@@ -6,6 +6,7 @@ import { usePackAbonnement } from '../../hooks/usePackAbonnement';
 import { CUSTOM_PRICE_PER_KISS } from '../../constants/kissConfig';
 
 export interface PlanSelection {
+  id: string;
   kiss: number;
   price: number;
   label: string;
@@ -25,7 +26,8 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
   const handlePlanSelect = useCallback((plan: PlanSelection) => {
     setSelectedPlan(plan);
     onSelectionChange(plan);
-  }, [onSelectionChange]);
+    onScrollToPayment();
+  }, [onSelectionChange, onScrollToPayment]);
 
   const handleCustomQtyChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseInt(e.target.value, 10);
@@ -36,6 +38,7 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
   const handleCustomBuy = useCallback(() => {
     if (customQty > 0) {
       const selection: PlanSelection = {
+        id: 'custom',
         kiss: customQty,
         price: customTotal,
         label: `${formatNumber(customQty)} KISS (libre)`,
@@ -48,6 +51,7 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
 
   const handlePlanBuy = useCallback((plan: { id: string; kiss: number; price: number }) => {
     const selection: PlanSelection = {
+      id: plan.id,
       kiss: plan.kiss,
       price: plan.price,
       label: `${formatNumber(plan.kiss)} KISS`,
@@ -106,6 +110,7 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
                   key={plan.id}
                   className={planClass}
                   onClick={() => handlePlanSelect({
+                    id: plan.id,
                     kiss: plan.kiss,
                     price: plan.price,
                     label: `${formatNumber(plan.kiss)} KISS`,
@@ -118,6 +123,7 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       handlePlanSelect({
+                        id: plan.id,
                         kiss: plan.kiss,
                         price: plan.price,
                         label: `${formatNumber(plan.kiss)} KISS`,
@@ -132,6 +138,7 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
                     {plan.badge === 'best' && (
                       <div className="kiss-plan__badge kiss-plan__badge--gold">POPULAIRE</div>
                     )}
+                    <div className="kiss-plan__duree">Valable {plan.duree}</div>
                     <div className="kiss-plan__quantity">{formatNumber(plan.kiss)}</div>
                     <div className="kiss-plan__label">KISS</div>
                     <div className="kiss-plan__price">
@@ -142,6 +149,12 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
                       className="kiss-plan__desc"
                       dangerouslySetInnerHTML={{ __html: plan.description }}
                     />
+                    {plan.benefits && (
+                      <div
+                        className="kiss-plan__benefits"
+                        dangerouslySetInnerHTML={{ __html: plan.benefits }}
+                      />
+                    )}
                     <button
                       className="btn btn--gradient kiss-plan__btn"
                       type="button"
