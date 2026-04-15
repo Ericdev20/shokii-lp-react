@@ -56,10 +56,15 @@ export function useCountries(): UseCountriesResult {
       const data = await fetchCountries();
       setAllCountries(data);
 
-      const detected = detectCountryFromNavigator() ?? (await detectCountryByIP());
-      if (detected && data.some(c => c.Iso2 === detected)) {
-        setDetectedCountry(detected);
-      }
+      const detectedByIP = await detectCountryByIP();
+      const detectedByNavigator = detectCountryFromNavigator();
+
+      const detected = 
+        (detectedByIP && data.some(c => c.Iso2 === detectedByIP)) ? detectedByIP :
+        (detectedByNavigator && data.some(c => c.Iso2 === detectedByNavigator)) ? detectedByNavigator :
+        'BJ'; // Benin par défaut
+
+      setDetectedCountry(detected);
     } catch (err) {
       setError('Impossible de charger les pays');
       setAllCountries([]);

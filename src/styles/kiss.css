@@ -458,8 +458,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .kiss-plan--best.is-selected {
-  border-color: var(--pink);
-  box-shadow: 0 8px 32px rgba(255, 31, 120, 0.3);
+  border-color: var(--gold);
+  box-shadow: 0 8px 32px rgba(212, 160, 23, 0.35);
 }
 
 .kiss-plan__quantity {
@@ -471,6 +471,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background-clip: text;
   line-height: 1;
   margin-bottom: 4px;
+}
+
+.kiss-plan--best .kiss-plan__quantity {
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.kiss-plan--best.is-selected .kiss-plan__check {
+  background: var(--gold-grad);
+  box-shadow: var(--shadow-gold);
 }
 
 .kiss-plan__label {

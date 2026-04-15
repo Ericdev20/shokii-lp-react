@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { Country } from '../../hooks/useCountries';
 
+function normalizeString(str: string): string {
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
 interface CountrySelectProps {
   countries: Country[];
   value: string;
@@ -28,7 +35,7 @@ export function CountrySelect({
   const selectedCountry = countries.find((c) => c.code === value);
 
   const filteredCountries = countries.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase())
+    normalizeString(c.name).includes(normalizeString(search))
   );
 
   const handleSelect = useCallback((code: string) => {
