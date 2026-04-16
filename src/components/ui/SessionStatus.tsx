@@ -28,7 +28,7 @@ export function SessionError({ message }: SessionErrorProps) {
         </div>
         <div className="session-error__content">
           <h3>Session invalide</h3>
-          <p>{message}</p>
+          <p dangerouslySetInnerHTML={{ __html: message }} />
         </div>
         <div className="session-error__actions">
           <a href="/" className="btn btn--secondary">

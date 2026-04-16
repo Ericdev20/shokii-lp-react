@@ -1542,7 +1542,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    18. SESSION STATUS
 ────────────────────────────────────────────────────────── */
 .session-status {
-  min-height: 100vh;
+  /*min-height: 100vh;*/
   display: flex;
   align-items: center;
   justify-content: center;

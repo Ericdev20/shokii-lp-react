@@ -47,7 +47,7 @@ export function usePaymentSession(): PaymentSession {
     const token = urlToken || getTokenFromLocalStorage();
 
     if (!token) {
-      setError('Votre session de paiement n\'est plus valide. Veuillez retourner sur l\'application Shokii, vous reconnecter si nécessaire, puis relancer votre achat.');
+      setError('Votre session de paiement n\'est plus valide. Veuillez retourner sur <b>l\'Application Shokii</b>, vous reconnecter si nécessaire, puis relancer l\'achat.');
       setValid(false);
       setLoading(false);
       return;
@@ -66,12 +66,12 @@ export function usePaymentSession(): PaymentSession {
         setError(null);
       } else {
         removeTokenFromLocalStorage();
-        setError('Votre session de paiement a expiré. Veuillez retourner sur l\'application Shokii, vous reconnecter si nécessaire, puis relancer votre achat.');
+        setError('Votre session de paiement a expiré. Veuillez retourner sur <b>l\'application Shokii</b>, vous reconnecter si nécessaire, puis relancer votre achat.');
         setValid(false);
       }
     } catch (err) {
       removeTokenFromLocalStorage();
-      setError('Votre session de paiement n\'est plus valide. Veuillez retourner sur l\'application Shokii, vous reconnecter si nécessaire, puis relancer votre achat.');
+      setError('Votre session de paiement n\'est plus valide. Veuillez retourner sur <b>l\'application Shokii</b>, vous reconnecter si nécessaire, puis relancer votre achat.');
       setValid(false);
     } finally {
       setLoading(false);

@@ -3,7 +3,7 @@ import { formatNumber } from '../../lib/format';
 import { Reveal } from '../ui/Reveal';
 import { CountrySelect } from '../ui/CountrySelect';
 import { PaymentMethodsList } from '../ui/PaymentMethodCard';
-import { UserInfo } from '../ui/SessionStatus';
+import { UserInfo, SessionError } from '../ui/SessionStatus';
 import { useCountries } from '../../hooks/useCountries';
 import { usePaymentMethods } from '../../hooks/usePaymentMethods';
 import { usePaymentPolling } from '../../hooks/usePaymentPolling';
@@ -20,10 +20,12 @@ interface PlanSelection {
 interface KissPaymentFormProps {
   selection: PlanSelection | null;
   user: SessionUser | null;
+  sessionValid: boolean;
+  sessionError: string | null;
   onCountryChange?: (countryCode: string) => void;
 }
 
-export function KissPaymentForm({ selection, user, onCountryChange }: KissPaymentFormProps) {
+export function KissPaymentForm({ selection, user, sessionValid, sessionError, onCountryChange }: KissPaymentFormProps) {
   const { countries, loading: countriesLoading, error: countriesError, detectedCountry, retry: retryCountries } = useCountries();
   const [country, setCountry] = useState('');
   const [phone, setPhone] = useState('');
@@ -302,9 +304,13 @@ export function KissPaymentForm({ selection, user, onCountryChange }: KissPaymen
           </Reveal>
         )}
 
-        <form className="kiss-form" id="paymentForm" onSubmit={handleSubmit}>
-          {renderPaymentContent()}
-        </form>
+        {!sessionValid && sessionError ? (
+          <SessionError message={sessionError} />
+        ) : (
+          <form className="kiss-form" id="paymentForm" onSubmit={handleSubmit}>
+            {renderPaymentContent()}
+          </form>
+        )}
       </div>
     </section>
   );
