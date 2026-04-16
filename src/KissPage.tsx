@@ -14,19 +14,22 @@ export function KissPage() {
   const [selection, setSelection] = useState<PlanSelection | null>(null);
   const paymentRef = useRef<HTMLElement | null>(null);
 
-  const handleSelectionChange = useCallback((s: PlanSelection) => {
-    setSelection(s);
-  }, []);
+  const handleSelectionChange = useCallback(
+    // (s: PlanSelection) => {console.log('Plan sélectionné:', s);}, 
+    (s: PlanSelection) => {setSelection(s);}, 
+  
+  []);
 
-  const handleCountryChange = useCallback((countryCode: string) => {
+  const handleCountryChange = 
+  useCallback((countryCode: string) => {
     console.log('Pays sélectionné:', countryCode);
   }, []);
 
   const handleScrollToPayment = useCallback(() => {
-    const el = document.getElementById('payment');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    // const el = document.getElementById('payment');
+    // if (el) {
+    //   el.scrollIntoView({ behavior: 'smooth' });
+    // }
   }, []);
 
   return (
