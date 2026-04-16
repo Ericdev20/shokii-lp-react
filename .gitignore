@@ -11,7 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
-
+.qwen
+.env
+.QWEN.md
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
