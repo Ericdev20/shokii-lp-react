@@ -98,7 +98,15 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
           </div>
         ) : (
           <div className="kiss-plans__grid">
-            {packs.map((plan) => {
+            {[...packs].sort((a, b) => {
+              // Trier les packs pour afficher l'offre populaire en deuxième position
+              const getPriority = (pack: any) => {
+                if (pack.badge === 'best') return 1;      // Première position
+                if (pack.badge === 'popular') return 2;  // Deuxième position
+                return 3;                                // Autres positions
+              };
+              return getPriority(a) - getPriority(b);
+            }).map((plan) => {
               const isSelected = selectedPlan?.kiss === plan.kiss && selectedPlan?.price === plan.price;
               let planClass = 'kiss-plan';
               if (plan.badge === 'popular') planClass += ' kiss-plan--popular';
