@@ -40,7 +40,10 @@ export function usePaymentSession(): PaymentSession {
     
     if (urlToken) {
       saveTokenToLocalStorage(urlToken);
-      const newUrl = window.location.pathname;
+      const params = new URLSearchParams(window.location.search);
+      params.delete('token');
+      const queryString = params.toString();
+      const newUrl = window.location.pathname + (queryString ? '?' + queryString : '');
       window.history.replaceState({}, '', newUrl);
     }
 

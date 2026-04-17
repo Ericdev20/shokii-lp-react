@@ -6,7 +6,8 @@ import { KissPlans } from './components/sections/KissPlans';
 import { KissPaymentForm } from './components/sections/KissPaymentForm';
 import { KissReassurance } from './components/sections/KissReassurance';
 import { usePaymentSession } from './hooks/usePaymentSession';
-import { useState, useCallback, useRef } from 'react';
+import { parseKissParams } from './hooks/useKissParams';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import type { PlanSelection } from './components/sections/KissPlans';
 
 export function KissPage() {
@@ -14,22 +15,24 @@ export function KissPage() {
   const [selection, setSelection] = useState<PlanSelection | null>(null);
   const paymentRef = useRef<HTMLElement | null>(null);
 
-  const handleSelectionChange = useCallback(
-    // (s: PlanSelection) => {console.log('Plan sélectionné:', s);}, 
-    (s: PlanSelection) => {setSelection(s);}, 
+  const urlParams = useMemo(() => parseKissParams(), []);
   
-  []);
+  const initialCustomQty = urlParams.amount ? Math.floor(urlParams.amount / 200) : undefined;
+  const initialPackId = urlParams.abonnementId || undefined;
 
-  const handleCountryChange = 
-  useCallback((countryCode: string) => {
+  const handleSelectionChange = useCallback((s: PlanSelection) => {
+    setSelection(s);
+  }, []);
+
+  const handleCountryChange = useCallback((countryCode: string) => {
     console.log('Pays sélectionné:', countryCode);
   }, []);
 
   const handleScrollToPayment = useCallback(() => {
-    // const el = document.getElementById('payment');
-    // if (el) {
-    //   el.scrollIntoView({ behavior: 'smooth' });
-    // }
+    const el = document.getElementById('payment');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   }, []);
 
   return (
@@ -41,6 +44,8 @@ export function KissPage() {
         <KissPlans
           onSelectionChange={handleSelectionChange}
           onScrollToPayment={handleScrollToPayment}
+          initialPackId={initialPackId}
+          initialCustomQty={initialCustomQty}
         />
         <section ref={paymentRef as React.RefObject<HTMLElement | null>}>
           <KissPaymentForm 

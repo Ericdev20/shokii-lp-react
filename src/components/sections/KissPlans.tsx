@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { formatNumber } from '../../lib/format';
 import { Reveal } from '../ui/Reveal';
 import { SkeletonPlanCard } from '../ui/Skeleton';
@@ -15,13 +15,43 @@ export interface PlanSelection {
 interface KissPlansProps {
   onSelectionChange: (selection: PlanSelection) => void;
   onScrollToPayment: () => void;
+  initialPackId?: string | null;
+  initialCustomQty?: number;
 }
 
-export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansProps) {
+export function KissPlans({ onSelectionChange, onScrollToPayment, initialPackId, initialCustomQty }: KissPlansProps) {
   const { packs, loading, error, retry } = usePackAbonnement();
   const [selectedPlan, setSelectedPlan] = useState<PlanSelection | null>(null);
   const [customQty, setCustomQty] = useState<number>(0);
   const customTotal = customQty * CUSTOM_PRICE_PER_KISS;
+  const customSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!loading && packs.length > 0) {
+      if (initialPackId) {
+        const pack = packs.find(p => p.id === initialPackId);
+        if (pack) {
+          const selection: PlanSelection = {
+            id: pack.id,
+            kiss: pack.kiss,
+            price: pack.price,
+            label: `${formatNumber(pack.kiss)} KISS`,
+          };
+          setSelectedPlan(selection);
+          onSelectionChange(selection);
+          setTimeout(() => {
+            const card = document.querySelector(`[data-pack-id="${initialPackId}"]`);
+            card?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 150);
+        }
+      } else if (initialCustomQty && initialCustomQty > 0) {
+        setCustomQty(initialCustomQty);
+        setTimeout(() => {
+          customSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 150);
+      }
+    }
+  }, [loading, packs, initialPackId, initialCustomQty, onSelectionChange]);
 
   const handlePlanSelect = useCallback((plan: PlanSelection) => {
     setSelectedPlan(plan);
@@ -117,6 +147,7 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
                 <Reveal
                   key={plan.id}
                   className={planClass}
+                  data-pack-id={plan.id}
                   onClick={() => handlePlanSelect({
                     id: plan.id,
                     kiss: plan.kiss,
@@ -180,7 +211,7 @@ export function KissPlans({ onSelectionChange, onScrollToPayment }: KissPlansPro
           </div>
         )}
 
-        <Reveal className="kiss-custom">
+        <Reveal ref={customSectionRef} className="kiss-custom">
           <div className="kiss-custom__inner">
             <div className="kiss-custom__info">
               <i className="fa-solid fa-coins"></i>
