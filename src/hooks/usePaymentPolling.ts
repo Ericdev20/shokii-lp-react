@@ -6,7 +6,7 @@ type PaymentStatus = 'idle' | 'initializing' | 'verifying' | 'success' | 'failed
 
 const POLLING_INTERVAL = 3000;
 const POLLING_TIMEOUT = 60000;
-const SUCCESS_STATUSES = ['successful', 'success', 'transferred', 'approved', 'received', 'processed'];
+const SUCCESS_STATUSES = ['successful', 'success', 'transferred', 'approved', 'received', 'processed', 'completed'];
 const PENDING_STATUSES = ['pending', 'in_progress', 'waiting'];
 const FAILED_STATUSES = ['failed', 'declined', 'rejected'];
 
