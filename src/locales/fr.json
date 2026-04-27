@@ -1,0 +1,326 @@
+{
+  "common": {
+    "home": "Accueil",
+    "back": "Retour",
+    "buy": "Acheter",
+    "submit": "Soumettre",
+    "discover": "Découvrir",
+    "download": "Télécharger",
+    "learnMore": "En savoir plus",
+    "retry": "Réessayer",
+    "optional": "optionnel",
+    "loading": "Chargement..."
+  },
+  "landing": {
+    "hero": {
+      "title": "Trouvez l'amour",
+      "titleLine2": "avec Shokii !",
+      "subtitle": "Rejoignez des milliers de célibataires et connectez-vous avec des personnes qui partagent vos valeurs. Shokii, l'application de rencontres qui vous correspond vraiment.",
+      "cta": "Télécharger maintenant",
+      "availableOn": "Disponible sur",
+      "downloadOn": "Télécharger sur",
+      "googlePlay": "Google Play",
+      "appStore": "App Store",
+      "downloadGooglePlay": "Télécharger sur Google Play",
+      "downloadAppStore": "Télécharger sur App Store",
+      "trust": {
+        "secure": "Paiement sécurisé",
+        "users": "1M+ utilisateurs",
+        "available": "Disponible 24h/24"
+      }
+    },
+    "features": {
+      "title": "Quelques fonctionnalités",
+      "subtitle": "Découvrez toutes les fonctionnalités qui font de Shokii l'application de rencontres incontournable du moment.",
+      "cards": [
+        {
+          "title": "Création de profil",
+          "description": "Créez un profil attractif avec vos photos et description pour attirer des personnes qui partagent vos valeurs."
+        },
+        {
+          "title": "Parcourir et matcher",
+          "description": "Découvrez les profils près de chez vous et matchez avec des personnes qui vouslikent mutuellement."
+        },
+        {
+          "title": "Recherche personnalisée",
+          "description": "Trouvez des profils selon vos préférences : âge, localisation, intérêts et plus encore."
+        },
+        {
+          "title": "Mode incognito",
+          "description": "Parcourez de manière discrète et contrôlez qui peut voir votre profil."
+        },
+        {
+          "title": "Messagerie privée",
+          "description": "Discutez en toute sécurité avec vos matchs et apprenez à vous connaître avant de vous rencontrer."
+        },
+        {
+          "title": "Rencontres réelles",
+          "description": "Profitez d'offres spéciales dans les restaurants et clubs partenaires pour rencontrer vos matchs."
+        },
+        {
+          "title": "Événements",
+          "description": "Achetez des billets pour les événements et meetups organisés par Shokii et ses partenaires."
+        },
+        {
+          "title": "Live & Contenu",
+          "description": "Participez à des sessions live et découverte de contenu social pour échanger."
+        },
+        {
+          "title": "Recherche avancée",
+          "description": "Laissez-nous vous aider à trouver votre partenaire idéal."
+        }
+      ]
+    },
+    "about": {
+      "title": "À Propos",
+      "description1": "Shokii est une application de rencontres conçue pour connecter les célibataires en Afrique et leur permettre de trouver l'amour, faire de nouvelles rencontres et créer de vraies connexions.",
+      "description2": "Avec plus de 1 000 000 d'utilisateurs actifs, Shokii réunit une communauté dynamique de célibataires hommes et femmes à la recherche de relations authentiques.",
+      "description3": "L'application est disponible en français, anglais, espagnol et portugais, afin de faciliter les rencontres entre différentes cultures.",
+      "description4": "Grâce à un algorithme intelligent et des outils de sécurité avancés, nous offrons une expérience de rencontre simple, sécurisée et agréable. Rejoignez Shokii et commencez votre histoire dès aujourd'hui.",
+      "cards": [
+        {
+          "title": "Sécurisé",
+          "description": "Vos données sont protégées et sécurisées à tout moment."
+        },
+        {
+          "title": "Facile à utiliser",
+          "description": "Une interface intuitive et agréable pour tous les utilisateurs."
+        },
+        {
+          "title": "Communauté",
+          "description": "Rejoignez une communauté active et bienveillante."
+        },
+        {
+          "title": "Sorties & Rencontres réelles",
+          "description": "Accédez à des offres spéciales dans des restaurants et clubs partenaires pour rencontrer vos matchs et vivre de vrais moments ensemble."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "Comment ça marche ?",
+      "steps": [
+        {
+          "title": "Inscription et création de profil",
+          "description": "Créez votre compte en quelques minutes et complétez votre profil pour commencer à rencontrer des personnes."
+        },
+        {
+          "title": "Recherche et matching",
+          "description": "Parcourez les profils et trouvez des personnes qui correspondent à vos critères grâce à notre algorithme."
+        },
+        {
+          "title": "Discussion et rencontres",
+          "description": "Échangez des messages et organisez de vraies rencontres avec vos matchs."
+        }
+      ]
+    },
+    "download": {
+      "title": "Téléchargez maintenant",
+      "subtitle": "Rejoignez-nous sur notre application mobile. Créez un compte gratuitement et commencez dès maintenant à trouver l'amour.",
+      "cta": "Télécharger pour Android",
+      "cta2": "Télécharger pour iOS",
+      "availableOn": "Disponible sur",
+      "downloadOn": "Télécharger sur",
+      "googlePlay": "Google Play",
+      "appStore": "App Store",
+      "downloadGooglePlay": "Télécharger sur Google Play",
+      "downloadAppStore": "Télécharger sur App Store"
+    },
+    "testimonials": {
+      "title": "Des milliers de rencontres ont commencé sur Shokii… et certaines deviennent de vraies histoires d'amour.",
+      "subtitle": "Et si la prochaine rencontre était la vôtre ?",
+      "cta": "Téléchargez dès aujourd'hui !",
+      "cards": [
+        {
+          "text": "J'ai trouvé mon âme sœur sur Shokii ! L'app est super facile à utiliser.",
+          "author": "Marie, 28 ans"
+        },
+        {
+          "text": "Incroyable, j'ai matché avec quelqu'un qui partage mes intérêts !",
+          "author": "Jean, 32 ans"
+        },
+        {
+          "text": "Merci Shokii, je suis en couple grâce à vous !",
+          "author": "Sophie, 25 ans"
+        }
+      ],
+      "aria": {
+        "label": "Témoignages d'utilisateurs",
+        "item": "Témoignage de",
+        "stars": "5 étoiles sur 5"
+      },
+      "yearsOld": "ans"
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "subtitle": "Nous sommes là pour vous aider. Contactez-nous pour toutes vos questions.",
+      "form": {
+        "nom": "Nom",
+        "nomPlaceholder": "Votre nom",
+        "prenom": "Prénom",
+        "prenomPlaceholder": "Votre prénom",
+        "email": "Email",
+        "emailPlaceholder": "Votre email",
+        "telephone": "Téléphone",
+        "telephonePlaceholder": "Votre téléphone",
+        "message": "Message",
+        "messagePlaceholder": "Votre message",
+        "submit": "Envoyer",
+        "submitting": "Envoi en cours…",
+        "success": "✓ Message envoyé !",
+        "errors": {
+          "nomRequired": "Veuillez entrer votre nom.",
+          "emailRequired": "Veuillez entrer votre email.",
+          "emailInvalid": "Adresse email invalide.",
+          "messageRequired": "Veuillez entrer votre message."
+        }
+      }
+    }
+  },
+  "kiss": {
+    "hero": {
+      "title": "Recharge tes KISS, vis des moments uniques",
+      "description": "Les KISS sont la monnaie de Shokii. Utilise-les pour envoyer des cadeaux, booster ton profil, accéder à des fonctionnalités exclusives et bien plus.",
+      "cta": "Découvrir les packs",
+      "trust": {
+        "secure": "Paiement sécurisé",
+        "users": "1M+ utilisateurs",
+        "available": "Disponible 24h/24"
+      }
+    },
+    "why": {
+      "title": "Pourquoi acheter des KISS ?",
+      "subtitle": "Les KISS te donnent accès à un monde de possibilités sur Shokii.",
+      "cards": [
+        {
+          "title": "Booste ton profil",
+          "description": "Utilise tes KISS pour apparaître en tête des résultats et multiplier tes matchs."
+        },
+        {
+          "title": "Envoie des cadeaux",
+          "description": "Offre des cadeaux virtuels à tes matchs et démarque-toi avec style."
+        },
+        {
+          "title": "Accès premium",
+          "description": "Débloque des fonctionnalités exclusives comme le mode incognito et les Super Likes."
+        },
+        {
+          "title": "Super Likes",
+          "description": "Montre un intérêt fort avec des Super Likes et augmente tes chances de match."
+        }
+      ]
+    },
+    "plans": {
+      "title": "Choisis ton pack de KISS",
+      "subtitle": "Sélectionne le pack qui te convient et passe au paiement.",
+      "popular": "POPULAIRE",
+      "valid": "Valable",
+      "empty": "Aucun pack disponible pour le moment."
+    },
+    "common": {
+      "retry": "Réessayer"
+    },
+    "custom": {
+      "title": "Achat libre",
+      "description": "Choisis ta quantité.",
+      "pricePer": "FCFA / KISS",
+      "placeholder": "Quantité"
+    },
+    "payment": {
+      "title": "Finalise ton achat",
+      "subtitle": "Remplis les informations ci-dessous pour recevoir tes KISS.",
+      "country": "Pays",
+      "phone": "Numéro de téléphone",
+      "phonePlaceholder": "Numéro sans indicatif",
+      "paymentMethod": "Mode de paiement",
+      "summary": "Récapitulatif de la commande",
+      "planSelected": "Plan sélectionné",
+      "kissQuantity": "Quantité de KISS",
+      "total": "Total",
+      "submit": "Payer maintenant",
+      "secure": "Paiement sécurisé",
+      "phoneError": {
+        "digits": "Le numéro ne doit contenir que des chiffres",
+        "tooShort": "Le numéro est trop court",
+        "tooLong": "Le numéro est trop long"
+      }
+    },
+    "paymentStatus": {
+      "initializing": "Initialisation du paiement...",
+      "verifying": "Vérification du paiement en cours...",
+      "verifyingHint": "Veuillez patienter, cela peut prendre quelques instants.",
+      "success": "Paiement réussi !",
+      "successText": "Vos KISS ont été crédités sur votre compte.",
+      "kissAdded": "KISS ajoutés",
+      "successHint": "Vous pouvez retourner dans l'application Shokii pour dépenser vos KISS.",
+      "successClose": "D'accord",
+      "failed": "Paiement refusé",
+      "failedText": "Le paiement a été refusé. Veuillez réessayer.",
+      "retry": "Retour au formulaire",
+      "timeout": "Vérification en attente",
+      "timeoutText": "La vérification du paiement prend plus de temps que prévu.",
+      "reverify": "Revérifier"
+    },
+    "reassurance": {
+      "secure": "Paiement 100% sécurisé",
+      "instant": "KISS crédités instantanément",
+      "support": "Support disponible 24h/24"
+    },
+    "header": {
+      "back": "Retour à l'accueil"
+    }
+  },
+  "session": {
+    "loading": "Vérification de session...",
+    "invalid": "Session invalide",
+    "backHome": "Retour à l'accueil"
+  },
+  "countrySelect": {
+    "loading": "Chargement des pays...",
+    "placeholder": "Sélectionner un pays",
+    "search": "Rechercher un pays...",
+    "noResults": "Aucun pays trouvé"
+  },
+  "paymentMethod": {
+    "unavailable": "Paiement non disponible dans votre pays",
+    "retry": "Réessayer"
+  },
+  "footer": {
+    "about": "À propos",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "contact": "Contact",
+    "copyright": "Tous droits réservés",
+    "nav": {
+      "home": "Accueil",
+      "about": "À propos",
+      "howItWorks": "Comment ça marche",
+      "testimonials": "Témoignages",
+      "pricing": "Tarifs",
+      "contact": "Contact"
+    },
+    "help": {
+      "title": "Aide et support",
+      "usefulLinks": "Liens utiles",
+      "moreInfo": "Plus d'informations sur nos services",
+      "faq": "FAQ"
+    },
+    "contactUs": "Contactez-nous",
+    "downloadGooglePlay": "Télécharger sur Google Play",
+    "downloadAppStore": "Télécharger sur App Store",
+    "availableOn": "Disponible sur",
+    "downloadOn": "Télécharger sur"
+  },
+  "header": {
+    "download": "Télécharger",
+    "menuOpen": "Ouvrir le menu",
+    "menuClose": "Fermer le menu"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "howItWorks": "Comment ça marche",
+    "testimonials": "Témoignages",
+    "pricing": "Tarifs",
+    "contact": "Contact"
+  }
+}

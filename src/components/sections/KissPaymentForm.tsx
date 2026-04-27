@@ -7,6 +7,7 @@ import { UserInfo, SessionError } from '../ui/SessionStatus';
 import { useCountries } from '../../hooks/useCountries';
 import { usePaymentMethods } from '../../hooks/usePaymentMethods';
 import { usePaymentPolling } from '../../hooks/usePaymentPolling';
+import { useTranslation } from '../../hooks/useTranslation';
 import type { PaymentMethod } from '../../services/paymentMethodsApi';
 import type { SessionUser } from '../../services/sessionApi';
 
@@ -26,6 +27,7 @@ interface KissPaymentFormProps {
 }
 
 export function KissPaymentForm({ selection, user, sessionValid, sessionError, onCountryChange }: KissPaymentFormProps) {
+  const { t } = useTranslation();
   const { countries, loading: countriesLoading, error: countriesError, detectedCountry, retry: retryCountries } = useCountries();
   const [country, setCountry] = useState('');
   const [phone, setPhone] = useState('');
@@ -44,7 +46,7 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
 
   const selectedCountry = countries.find((c) => c.code === country);
   const dialCode = selectedCountry?.dialCode ?? '';
-  const phonePlaceholder = selectedCountry ? `${selectedCountry.flag} Numéro sans indicatif` : 'XX XX XX XX';
+  const phonePlaceholder = selectedCountry ? `${selectedCountry.flag} ${t('kiss.payment.phonePlaceholder')}` : 'XX XX XX XX';
 
   const isFormValid =
     !!country &&
@@ -61,21 +63,24 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
     onCountryChange?.(code);
   }, [onCountryChange]);
 
+  const getPhoneError = (cleaned: string) => {
+    if (!/^\d+$/.test(cleaned)) {
+      return t('kiss.payment.phoneError.digits');
+    } else if (cleaned.length < 6) {
+      return t('kiss.payment.phoneError.tooShort');
+    } else if (cleaned.length > 15) {
+      return t('kiss.payment.phoneError.tooLong');
+    }
+    return null;
+  };
+
   const handlePhoneChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const cleaned = value.replace(/\s/g, '');
     setPhone(value);
 
     if (cleaned.length > 0) {
-      if (!/^\d+$/.test(cleaned)) {
-        setPhoneError('Le numéro ne doit contenir que des chiffres');
-      } else if (cleaned.length < 6) {
-        setPhoneError('Le numéro est trop court');
-      } else if (cleaned.length > 15) {
-        setPhoneError('Le numéro est trop long');
-      } else {
-        setPhoneError(null);
-      }
+      setPhoneError(getPhoneError(cleaned));
     } else {
       setPhoneError(null);
     }
@@ -112,7 +117,7 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
           <div className="payment-status__spinner">
             <i className="fa-solid fa-circle-notch fa-spin" />
           </div>
-          <span>Initialisation du paiement...</span>
+          <span>{t('kiss.paymentStatus.initializing')}</span>
         </div>
       );
     }
@@ -123,8 +128,8 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
           <div className="payment-status__spinner">
             <i className="fa-solid fa-circle-notch fa-spin" />
           </div>
-          <span>Vérification du paiement en cours...</span>
-          <span className="payment-status__hint">Veuillez patienter, cela peut prendre quelques instants.</span>
+          <span>{t('kiss.paymentStatus.verifying')}</span>
+          <span className="payment-status__hint">{t('kiss.paymentStatus.verifyingHint')}</span>
         </div>
       );
     }
@@ -135,17 +140,17 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
           <div className="payment-status__icon">
             <i className="fa-solid fa-check-circle" />
           </div>
-          <h3>Paiement réussi !</h3>
-          <p>Vos KISS ont été crédités sur votre compte.</p>
+          <h3>{t('kiss.paymentStatus.success')}</h3>
+          <p>{t('kiss.paymentStatus.successText')}</p>
           {selection && (
             <div className="payment-status__amount">
               <span className="payment-status__kiss">{formatNumber(selection.kiss)}</span>
-              <span className="payment-status__label">KISS ajoutés</span>
+              <span className="payment-status__label">{t('kiss.paymentStatus.kissAdded')}</span>
             </div>
           )}
-          <p className="payment-status__hint">Vous pouvez retourner dans l'application Shokii pour dépenser vos KISS.</p>
+          <p className="payment-status__hint">{t('kiss.paymentStatus.successHint')}</p>
           <a href="/" className="btn btn--gradient payment-status__close">
-            D'accord
+            {t('kiss.paymentStatus.successClose')}
           </a>
         </div>
       );
@@ -157,14 +162,14 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
           <div className="payment-status__icon">
             <i className="fa-solid fa-times-circle" />
           </div>
-          <h3>Paiement refusé</h3>
-          <p>{paymentError || 'Le paiement a été refusé. Veuillez réessayer.'}</p>
+          <h3>{t('kiss.paymentStatus.failed')}</h3>
+          <p>{paymentError || t('kiss.paymentStatus.failedText')}</p>
           <button
             type="button"
             className="btn btn--secondary payment-status__retry"
             onClick={reset}
           >
-            Retour au formulaire
+            {t('kiss.paymentStatus.retry')}
           </button>
         </div>
       );
@@ -176,15 +181,15 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
           <div className="payment-status__icon">
             <i className="fa-solid fa-exclamation-circle" />
           </div>
-          <h3>Vérification en attente</h3>
-          <p>{paymentError || 'La vérification du paiement prend plus de temps que prévu.'}</p>
+          <h3>{t('kiss.paymentStatus.timeout')}</h3>
+          <p>{paymentError || t('kiss.paymentStatus.timeoutText')}</p>
           <div className="payment-status__actions">
             <button
               type="button"
               className="btn btn--gradient"
               onClick={reverify}
             >
-              Revérifier
+              {t('kiss.paymentStatus.reverify')}
             </button>
           </div>
         </div>
@@ -195,7 +200,7 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
       <>
         <div className="kiss-form__row">
           <div className="kiss-form__group">
-            <label>Pays</label>
+            <label>{t('kiss.payment.country')}</label>
             <CountrySelect
               countries={countries}
               value={country}
@@ -209,7 +214,7 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
 
         <div className="kiss-form__row">
           <div className="kiss-form__group">
-            <label htmlFor="phone">Numéro de téléphone</label>
+            <label htmlFor="phone">{t('kiss.payment.phone')}</label>
             <div className="kiss-form__phone">
               {dialCode && (
                 <span className="kiss-form__phone-code" id="phoneCode">
@@ -236,7 +241,7 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
 
         <div className="kiss-form__row">
           <div className="kiss-form__group">
-            <label>Mode de paiement</label>
+            <label>{t('kiss.payment.paymentMethod')}</label>
             <PaymentMethodsList
               methods={methods}
               selectedMethod={selectedMethod}
@@ -249,19 +254,19 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
         </div>
 
         <div className="kiss-form__summary" id="orderSummary">
-          <h3>Récapitulatif de la commande</h3>
+          <h3>{t('kiss.payment.summary')}</h3>
           <div className="kiss-form__summary-row">
-            <span>Plan sélectionné</span>
+            <span>{t('kiss.payment.planSelected')}</span>
             <span id="summaryPlan">{selection?.label ?? '—'}</span>
           </div>
           <div className="kiss-form__summary-row">
-            <span>Quantité de KISS</span>
+            <span>{t('kiss.payment.kissQuantity')}</span>
             <span id="summaryKiss">
               {selection ? `${formatNumber(selection.kiss)}` : '—'}
             </span>
           </div>
           <div className="kiss-form__summary-row kiss-form__summary-total">
-            <span>Total</span>
+            <span>{t('kiss.payment.total')}</span>
             <span id="summaryTotal">
               {selection ? `${formatNumber(selection.price)} FCFA` : '—'}
             </span>
@@ -276,7 +281,7 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
             disabled={!isFormValid}
           >
             <i className="fa-solid fa-lock" />
-            Payer maintenant
+            {t('kiss.payment.submit')}
           </button>
         </div>
       </>
@@ -288,12 +293,12 @@ export function KissPaymentForm({ selection, user, sessionValid, sessionError, o
       <div className="container">
         <Reveal>
           <h2 className="section-title" style={{ textAlign: 'center' }}>
-            Finalise ton achat
+            {t('kiss.payment.title')}
           </h2>
         </Reveal>
         <Reveal>
           <p className="section-subtitle" style={{ textAlign: 'center' }}>
-            Remplis les informations ci-dessous pour recevoir tes KISS.
+            {t('kiss.payment.subtitle')}
           </p>
         </Reveal>
         {user && (

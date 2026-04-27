@@ -1,7 +1,11 @@
 import { Reveal } from '../ui';
-import { steps } from '../../constants/steps';
+import { useTranslation } from '../../hooks/useTranslation';
+import { useSteps } from '../../constants/steps';
 
 export function HowItWorks() {
+  const { t } = useTranslation();
+  const steps = useSteps();
+
   return (
     <section className="how-it-works" id="comment-ca-marche">
       <div className="container how-it-works__inner">
@@ -16,9 +20,9 @@ export function HowItWorks() {
 
         <div className="how-it-works__content">
           <Reveal>
-            <h2>Comment ça<br />marche?</h2>
+            <h2>{t('landing.howItWorks.title')}</h2>
 
-            <ol className="steps" aria-label="Étapes pour utiliser Shokii">
+            <ol className="steps" aria-label={t('landing.howItWorks.title')}>
               {steps.map((step) => (
                 <li key={step.number} className="step">
                   <div className="step__number" aria-hidden="true">

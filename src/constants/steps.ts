@@ -1,10 +1,12 @@
+import { useTranslation } from '../hooks/useTranslation';
+
 export interface Step {
   number: number;
   title: string;
   description: string;
 }
 
-export const steps: Step[] = [
+const stepsFr: Step[] = [
   {
     number: 1,
     title: 'Inscription et création de profil',
@@ -21,3 +23,26 @@ export const steps: Step[] = [
     description: 'Échangez des messages et organisez de vraies rencontres avec vos matchs.',
   },
 ];
+
+const stepsEn: Step[] = [
+  {
+    number: 1,
+    title: 'Sign up and create profile',
+    description: 'Create your account in minutes and complete your profile to start meeting people.',
+  },
+  {
+    number: 2,
+    title: 'Search and matching',
+    description: 'Browse profiles and find people who match your criteria thanks to our algorithm.',
+  },
+  {
+    number: 3,
+    title: 'Chat and meetups',
+    description: 'Exchange messages and organize real meetings with your matches.',
+  },
+];
+
+export function useSteps() {
+  const { isFrench } = useTranslation();
+  return isFrench ? stepsFr : stepsEn;
+}

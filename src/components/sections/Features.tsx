@@ -1,24 +1,34 @@
 import { useState } from 'react';
 import { Reveal } from '../ui';
-import { features } from '../../constants/features';
+import { useTranslation } from '../../hooks/useTranslation';
 
 export function Features() {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleToggle = (index: number) => {
     setActiveIndex((prev) => (prev === index ? -1 : index));
   };
 
+  const features = [
+    { title: t('landing.features.cards.0.title'), description: t('landing.features.cards.0.description'), icon: 'fa-solid fa-user' },
+    { title: t('landing.features.cards.1.title'), description: t('landing.features.cards.1.description'), icon: 'fa-solid fa-heart' },
+    { title: t('landing.features.cards.2.title'), description: t('landing.features.cards.2.description'), icon: 'fa-solid fa-magnifying-glass' },
+    { title: t('landing.features.cards.3.title'), description: t('landing.features.cards.3.description'), icon: 'fa-solid fa-user-secret' },
+    { title: t('landing.features.cards.4.title'), description: t('landing.features.cards.4.description'), icon: 'fa-solid fa-comments' },
+    { title: t('landing.features.cards.5.title'), description: t('landing.features.cards.5.description'), icon: 'fa-solid fa-calendar-check' },
+    { title: t('landing.features.cards.6.title'), description: t('landing.features.cards.6.description'), icon: 'fa-solid fa-ticket' },
+    { title: t('landing.features.cards.7.title'), description: t('landing.features.cards.7.description'), icon: 'fa-solid fa-video' },
+    { title: t('landing.features.cards.8.title'), description: t('landing.features.cards.8.description'), icon: 'fa-solid fa-star' },
+  ];
+
   return (
     <section className="features" id="fonctionnalites">
       <div className="features__inner">
         <div className="features__left">
           <Reveal>
-            <h2>Quelques fonctionnalités</h2>
-            <p>
-              Découvrez toutes les fonctionnalités qui font de Shokii l&apos;application
-              de rencontres incontournable du moment.
-            </p>
+            <h2>{t('landing.features.title')}</h2>
+            <p>{t('landing.features.subtitle')}</p>
             <div className="features__mockups">
               <img src="/assets/match.png" alt="Mes Kiss" className="features__mockup-1" />
               <img src="/assets/msg.png" alt="Menu" className="features__mockup-2" />

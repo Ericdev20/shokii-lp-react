@@ -1,0 +1,326 @@
+{
+  "common": {
+    "home": "Home",
+    "back": "Back",
+    "buy": "Buy",
+    "submit": "Submit",
+    "discover": "Discover",
+    "download": "Download",
+    "learnMore": "Learn More",
+    "retry": "Try again",
+    "optional": "optional",
+    "loading": "Loading..."
+  },
+  "landing": {
+    "hero": {
+      "title": "Find love",
+      "titleLine2": "with Shokii!",
+      "subtitle": "Join thousands of singles and connect with people who share your values. Shokii, the dating app that truly represents you.",
+      "cta": "Download Now",
+      "availableOn": "Available on",
+      "downloadOn": "Download on",
+      "googlePlay": "Google Play",
+      "appStore": "App Store",
+      "downloadGooglePlay": "Download on Google Play",
+      "downloadAppStore": "Download on App Store",
+      "trust": {
+        "secure": "Secure Payment",
+        "users": "1M+ users",
+        "available": "Available 24/7"
+      }
+    },
+    "features": {
+      "title": "Some Features",
+      "subtitle": "Discover all the features that make Shokii the must-have dating app of the moment.",
+      "cards": [
+        {
+          "title": "Profile Creation",
+          "description": "Create an attractive profile with your photos and description to attract people who share your values."
+        },
+        {
+          "title": "Browse & Matching",
+          "description": "Discover profiles near you and match with people who like you mutually."
+        },
+        {
+          "title": "Custom Search",
+          "description": "Find profiles according to your preferences: age, location, interests and more."
+        },
+        {
+          "title": "Incognito Mode",
+          "description": "Browse discreetly and control who can see your profile."
+        },
+        {
+          "title": "Private Messaging",
+          "description": "Chat safely with your matches and get to know each other before meeting."
+        },
+        {
+          "title": "Real Life Meetings",
+          "description": "Enjoy special offers in partner restaurants and clubs to meet your matches."
+        },
+        {
+          "title": "Events",
+          "description": "Buy tickets for events and meetups organized by Shokii and its partners."
+        },
+        {
+          "title": "Live & Content",
+          "description": "Participate in live sessions and discover social content to exchange and make new connections."
+        },
+        {
+          "title": "Advanced Search",
+          "description": "Let us help you find your perfect partner."
+        }
+      ]
+    },
+    "about": {
+      "title": "About",
+      "description1": "Shokii is a dating app designed to connect singles in Africa and help them find love, make new connections, and build real relationships.",
+      "description2": "With more than 1,000,000 active users, Shokii brings together a dynamic community of single men and women looking for authentic relationships.",
+      "description3": "The app is available in French, English, Spanish and Portuguese, to facilitate connections between different cultures.",
+      "description4": "Thanks to an intelligent algorithm and advanced security tools, we offer a simple, secure, and pleasant dating experience. Join Shokii and start your story today.",
+      "cards": [
+        {
+          "title": "Secure",
+          "description": "Your data is protected and secure at all times."
+        },
+        {
+          "title": "Easy to use",
+          "description": "An intuitive and pleasant interface for all users."
+        },
+        {
+          "title": "Community",
+          "description": "Join an active and supportive community."
+        },
+        {
+          "title": "Real Dates",
+          "description": "Access special offers at partner restaurants and clubs to meet your matches and share real moments together."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "How it works?",
+      "steps": [
+        {
+          "title": "Sign up and create profile",
+          "description": "Create your account in minutes and complete your profile to start meeting people."
+        },
+        {
+          "title": "Search and matching",
+          "description": "Browse profiles and find people who match your criteria thanks to our algorithm."
+        },
+        {
+          "title": "Chat and meetups",
+          "description": "Exchange messages and organize real meetings with your matches."
+        }
+      ]
+    },
+    "download": {
+      "title": "Download now",
+      "subtitle": "Join us on our mobile app. Create an account for free and start finding love today.",
+      "cta": "Download for Android",
+      "cta2": "Download for iOS",
+      "availableOn": "Available on",
+      "downloadOn": "Download on",
+      "googlePlay": "Google Play",
+      "appStore": "App Store",
+      "downloadGooglePlay": "Download on Google Play",
+      "downloadAppStore": "Download on App Store"
+    },
+    "testimonials": {
+      "title": "Thousands of connections have started on Shokii, and some have become true love stories.",
+      "subtitle": "What if the next connection is yours?",
+      "cta": "Download today!",
+      "cards": [
+        {
+          "text": "I found my soulmate on Shokii! The app is super easy to use.",
+          "author": "Marie, 28 years"
+        },
+        {
+          "text": "Amazing, I matched with someone who shares my interests!",
+          "author": "Jean, 32 years"
+        },
+        {
+          "text": "Thanks Shokii, I'm in a relationship thanks to you!",
+          "author": "Sophie, 25 years"
+        }
+      ],
+      "aria": {
+        "label": "User testimonials",
+        "item": "Testimonial from",
+        "stars": "5 out of 5 stars"
+      },
+      "yearsOld": "years"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "We are here to help. Contact us with any questions.",
+      "form": {
+        "nom": "Name",
+        "nomPlaceholder": "Your name",
+        "prenom": "First Name",
+        "prenomPlaceholder": "Your first name",
+        "email": "Email",
+        "emailPlaceholder": "Your email",
+        "telephone": "Phone",
+        "telephonePlaceholder": "Your phone",
+        "message": "Message",
+        "messagePlaceholder": "Your message",
+        "submit": "Send",
+        "submitting": "Sending...",
+        "success": "✓ Message sent!",
+        "errors": {
+          "nomRequired": "Please enter your name.",
+          "emailRequired": "Please enter your email.",
+          "emailInvalid": "Invalid email address.",
+          "messageRequired": "Please enter your message."
+        }
+      }
+    }
+  },
+  "kiss": {
+    "hero": {
+      "title": "Top up your KISS, experience unique moments",
+      "description": "KISS is Shokii's currency. Use them to send gifts, boost your profile, access exclusive features and more.",
+      "cta": "Discover packs",
+      "trust": {
+        "secure": "Secure Payment",
+        "users": "1M+ users",
+        "available": "Available 24/7"
+      }
+    },
+    "why": {
+      "title": "Why buy KISS?",
+      "subtitle": "KISS gives you access to a world of possibilities on Shokii.",
+      "cards": [
+        {
+          "title": "Boost Your Profile",
+          "description": "Use your KISS to appear at the top of results and multiply your matches."
+        },
+        {
+          "title": "Send Gifts",
+          "description": "Give virtual gifts to your matches and stand out with style."
+        },
+        {
+          "title": "Premium Access",
+          "description": "Unlock exclusive features like incognito mode and Super Likes."
+        },
+        {
+          "title": "Super Likes",
+          "description": "Show strong interest with Super Likes and increase your match chances."
+        }
+      ]
+    },
+    "plans": {
+      "title": "Choose your KISS pack",
+      "subtitle": "Select the pack that suits you and proceed to payment.",
+      "popular": "POPULAR",
+      "valid": "Valid for",
+      "empty": "No packs available right now."
+    },
+    "common": {
+      "retry": "Try again"
+    },
+    "custom": {
+      "title": "Custom Purchase",
+      "description": "Choose your quantity.",
+      "pricePer": "FCFA / KISS",
+      "placeholder": "Quantity"
+    },
+    "payment": {
+      "title": "Complete your purchase",
+      "subtitle": "Fill in the information below to receive your KISS.",
+      "country": "Country",
+      "phone": "Phone number",
+      "phonePlaceholder": "Number without country code",
+      "paymentMethod": "Payment method",
+      "summary": "Order summary",
+      "planSelected": "Selected plan",
+      "kissQuantity": "KISS quantity",
+      "total": "Total",
+      "submit": "Pay Now",
+      "secure": "Secure Payment",
+      "phoneError": {
+        "digits": "The number must contain only digits",
+        "tooShort": "The number is too short",
+        "tooLong": "The number is too long"
+      }
+    },
+    "paymentStatus": {
+      "initializing": "Initializing payment...",
+      "verifying": "Verifying payment...",
+      "verifyingHint": "Please wait, this may take a few moments.",
+      "success": "Payment successful!",
+      "successText": "Your KISS have been credited to your account.",
+      "kissAdded": "KISS added",
+      "successHint": "You can return to the Shokii app to spend your KISS.",
+      "successClose": "Got it",
+      "failed": "Payment declined",
+      "failedText": "The payment was declined. Please try again.",
+      "retry": "Back to form",
+      "timeout": "Verification pending",
+      "timeoutText": "Payment verification is taking longer than expected.",
+      "reverify": "Re-verify"
+    },
+    "reassurance": {
+      "secure": "100% Secure Payment",
+      "instant": "KISS credited instantly",
+      "support": "Support available 24/7"
+    },
+    "header": {
+      "back": "Back to home"
+    }
+  },
+  "session": {
+    "loading": "Verifying session...",
+    "invalid": "Invalid session",
+    "backHome": "Back to home"
+  },
+  "countrySelect": {
+    "loading": "Loading countries...",
+    "placeholder": "Select a country",
+    "search": "Search for a country...",
+    "noResults": "No country found"
+  },
+  "paymentMethod": {
+    "unavailable": "Payment not available in your country",
+    "retry": "Try again"
+  },
+  "footer": {
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "contact": "Contact",
+    "copyright": "All rights reserved",
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "howItWorks": "How it works",
+      "testimonials": "Testimonials",
+      "pricing": "Pricing",
+      "contact": "Contact"
+    },
+    "help": {
+      "title": "Help & Support",
+      "usefulLinks": "Useful Links",
+      "moreInfo": "More info about our services",
+      "faq": "FAQ"
+    },
+    "contactUs": "Contact Us",
+    "downloadGooglePlay": "Download on Google Play",
+    "downloadAppStore": "Download on App Store",
+    "availableOn": "Available on",
+    "downloadOn": "Download on"
+  },
+  "header": {
+    "download": "Download",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "howItWorks": "How it works",
+    "testimonials": "Testimonials",
+    "pricing": "Pricing",
+    "contact": "Contact"
+  }
+}

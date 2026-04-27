@@ -1,33 +1,39 @@
-import { footerNavItems, footerHelpItems } from '../../constants/nav';
+import { footerNavItems } from '../../constants/nav';
+import { useTranslation } from '../../hooks/useTranslation';
+import { LanguageSelector } from '../ui/LanguageSelector';
 
 export function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__col">
-          <h4>Liens utiles</h4>
+          <h4>{t('footer.help.usefulLinks')}</h4>
           <ul>
-            {footerNavItems.map((item) => (
-              <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
-              </li>
-            ))}
+            {footerNavItems.map((item, index) => {
+              const keys = ['footer.nav.home', 'footer.nav.about', 'footer.nav.howItWorks', 'footer.nav.testimonials', 'footer.nav.contact'];
+              return (
+                <li key={item.href}>
+                  <a href={item.href}>{t(keys[index])}</a>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
         <div className="footer__col">
-          <h4>Aide et support</h4>
+          <h4>{t('footer.help.title')}</h4>
           <ul>
-            {footerHelpItems.map((item) => (
-              <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
-              </li>
-            ))}
+            <li><a href="#">{t('footer.help.moreInfo')}</a></li>
+            <li><a href="#">{t('footer.help.faq')}</a></li>
+            <li><a href="#">{t('footer.privacy')}</a></li>
+            <li><a href="#">{t('footer.terms')}</a></li>
           </ul>
         </div>
 
         <div className="footer__col">
-          <h4>Contactez-nous</h4>
+          <h4>{t('footer.contactUs')}</h4>
           <ul>
             <li>
               <a href="mailto:contact@shokii.com">contact@shokii.com</a>
@@ -37,28 +43,32 @@ export function Footer() {
             </li>
           </ul>
           <div className="footer__stores">
-            <a href="#" className="footer__store-btn" aria-label="Télécharger sur Google Play">
+            <a href="#" className="footer__store-btn" aria-label={t('footer.downloadGooglePlay')}>
               <img src="/assets/playstore.png" alt="" aria-hidden="true" />
               <span>
-                <small>Disponible sur</small>
+                <small>{t('footer.availableOn')}</small>
                 Google Play
               </span>
             </a>
-            <a href="#" className="footer__store-btn" aria-label="Télécharger sur App Store">
-              <img src="/assets/app-store.png" alt="" aria-hidden="true" />
+            <a href="#" className="footer__store-btn" aria-label={t('footer.downloadAppStore')}>
+              <img src="/assets/Apple_Store_logo.png" alt="" aria-hidden="true" />
               <span>
-                <small>Télécharger sur</small>
+                <small>{t('footer.downloadOn')}</small>
                 App Store
               </span>
             </a>
           </div>
+        </div>
+
+        <div className="footer__col footer__col--language">
+          <LanguageSelector />
         </div>
       </div>
 
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
           <img src="/assets/shokii.png" alt="Shokii" className="footer__logo" />
-          <p>&copy; 2026 Shokii. Tous droits réservés.</p>
+          <p>&copy; 2026 Shokii. {t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

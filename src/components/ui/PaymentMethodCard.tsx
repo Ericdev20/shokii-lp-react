@@ -1,3 +1,4 @@
+import { useTranslation } from '../../hooks/useTranslation';
 import type { PaymentMethod } from '../../services/paymentMethodsApi';
 
 interface PaymentMethodCardProps {
@@ -45,6 +46,8 @@ export function PaymentMethodsList({
   error,
   onRetry,
 }: PaymentMethodsListProps) {
+  const { t } = useTranslation();
+
   if (loading) {
     return (
       <div className="payment-methods">
@@ -66,7 +69,7 @@ export function PaymentMethodsList({
         <div className="payment-methods__error">
           <span>{error}</span>
           <button type="button" onClick={onRetry} className="kiss-form__retry">
-            Réessayer
+            {t('common.retry')}
           </button>
         </div>
       </div>
@@ -78,7 +81,7 @@ export function PaymentMethodsList({
       <div className="payment-methods">
         <div className="payment-methods__empty">
           <i className="fa-solid fa-credit-card" />
-          <span>Paiement non disponible dans votre pays</span>
+          <span>{t('paymentMethod.unavailable')}</span>
         </div>
       </div>
     );

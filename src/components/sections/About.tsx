@@ -1,39 +1,23 @@
 import { Reveal } from '../ui';
-import { aboutCards } from '../../constants';
+import { useTranslation } from '../../hooks/useTranslation';
+import { useAboutCards } from '../../constants/about';
 
 export function About() {
+  const { t } = useTranslation();
+  const aboutCards = useAboutCards();
+
   return (
     <section className="about" id="a-propos">
       <div className="container about__inner">
         <div className="about__left">
           <Reveal>
-            <h2 className="section-title">A Propos</h2>
+            <h2 className="section-title">{t('landing.about.title')}</h2>
             <div className="about__text">
-              <p>
-                Shokii est une application de rencontres conçue pour connecter les
-                célibataires en Afrique et leur permettre de trouver l&apos;amour, faire
-                de nouvelles rencontres et créer de vraies connexions.
-              </p>
-              <p>
-                Avec plus de <strong>1 000 000 d&apos;utilisateurs actifs</strong>,
-                Shokii réunit une communauté dynamique de célibataires hommes et
-                femmes à la recherche de relations authentiques.
-              </p>
-              <p>
-                L&apos;application est disponible en <strong>français, anglais, espagnol
-                et portugais</strong>, afin de faciliter les rencontres entre
-                différentes cultures.
-              </p>
-              <p>
-                Grâce à un algorithme intelligent et des outils de sécurité avancés,
-                nous offrons une expérience de rencontre simple, sécurisée et
-                agréable. Rejoignez Shokii et commencez votre histoire dès
-                aujourd&apos;hui.
-              </p>
+              <p>{t('landing.about.description1')}</p>
+              <p>{t('landing.about.description2')}</p>
+              <p>{t('landing.about.description3')}</p>
+              <p>{t('landing.about.description4')}</p>
             </div>
-            {/* <div className="about__cta">
-              <a href="#contact" className="btn btn--gradient">Contactez-nous</a>
-            </div> */}
           </Reveal>
         </div>
 

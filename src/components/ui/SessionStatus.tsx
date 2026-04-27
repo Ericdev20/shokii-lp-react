@@ -1,15 +1,19 @@
+import { useTranslation } from '../../hooks/useTranslation';
 import type { SessionUser } from '../../services/sessionApi';
 
 interface SessionLoadingProps {
   message?: string;
 }
 
-export function SessionLoading({ message = 'Vérification de session...' }: SessionLoadingProps) {
+export function SessionLoading({ message }: SessionLoadingProps) {
+  const { t } = useTranslation();
+  const defaultMessage = t('session.loading');
+  
   return (
     <div className="session-status session-status--loading">
       <div className="session-loading">
         <i className="fa-solid fa-circle-notch fa-spin" />
-        <span>{message}</span>
+        <span>{message || defaultMessage}</span>
       </div>
     </div>
   );
@@ -20,6 +24,8 @@ interface SessionErrorProps {
 }
 
 export function SessionError({ message }: SessionErrorProps) {
+  const { t } = useTranslation();
+  
   return (
     <div className="session-status session-status--error">
       <div className="session-error">
@@ -27,12 +33,12 @@ export function SessionError({ message }: SessionErrorProps) {
           <i className="fa-solid fa-exclamation-triangle" />
         </div>
         <div className="session-error__content">
-          <h3>Session invalide</h3>
+          <h3>{t('session.invalid')}</h3>
           <p dangerouslySetInnerHTML={{ __html: message }} />
         </div>
         <div className="session-error__actions">
           <a href="/" className="btn btn--secondary">
-            Retour à l'accueil
+            {t('session.backHome')}
           </a>
         </div>
       </div>

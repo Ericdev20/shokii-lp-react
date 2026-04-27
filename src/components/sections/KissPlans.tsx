@@ -4,6 +4,7 @@ import { Reveal } from '../ui/Reveal';
 import { SkeletonPlanCard } from '../ui/Skeleton';
 import { usePackAbonnement } from '../../hooks/usePackAbonnement';
 import { CUSTOM_PRICE_PER_KISS } from '../../constants/kissConfig';
+import { useTranslation } from '../../hooks/useTranslation';
 
 export interface PlanSelection {
   id: string;
@@ -20,6 +21,7 @@ interface KissPlansProps {
 }
 
 export function KissPlans({ onSelectionChange, onScrollToPayment, initialPackId, initialCustomQty }: KissPlansProps) {
+  const { t } = useTranslation();
   const { packs, loading, error, retry } = usePackAbonnement();
   const [selectedPlan, setSelectedPlan] = useState<PlanSelection | null>(null);
   const [customQty, setCustomQty] = useState<number>(0);
@@ -96,12 +98,12 @@ export function KissPlans({ onSelectionChange, onScrollToPayment, initialPackId,
       <div className="container">
         <Reveal>
           <h2 className="section-title" style={{ textAlign: 'center' }}>
-            Choisis ton pack de KISS
+            {t('kiss.plans.title')}
           </h2>
         </Reveal>
         <Reveal>
           <p className="section-subtitle" style={{ textAlign: 'center' }}>
-            Sélectionne le pack qui te convient et passe au paiement.
+            {t('kiss.plans.subtitle')}
           </p>
         </Reveal>
 
@@ -119,12 +121,12 @@ export function KissPlans({ onSelectionChange, onScrollToPayment, initialPackId,
               type="button"
               onClick={retry}
             >
-              Réessayer
+              {t('common.retry') || 'Réessayer'}
             </button>
           </div>
         ) : packs.length === 0 ? (
           <div className="kiss-empty">
-            <p>Aucun pack disponible pour le moment.</p>
+            <p>{t('kiss.plans.empty') || 'Aucun pack disponible pour le moment.'}</p>
           </div>
         ) : (
           <div className="kiss-plans__grid">
@@ -170,41 +172,41 @@ export function KissPlans({ onSelectionChange, onScrollToPayment, initialPackId,
                     }
                   }}
                 >
-                  <div className="kiss-plan__inner">
-                    {plan.badge === 'popular' && (
-                      <div className="kiss-plan__badge">POPULAIRE</div>
-                    )}
-                    {plan.badge === 'best' && (
-                      <div className="kiss-plan__badge kiss-plan__badge--gold">POPULAIRE</div>
-                    )}
-                    <div className="kiss-plan__duree">Valable {plan.duree}</div>
-                    <div className="kiss-plan__quantity">{formatNumber(plan.kiss)}</div>
-                    <div className="kiss-plan__label">KISS</div>
-                    <div className="kiss-plan__price">
-                      <span className="kiss-plan__amount">{formatNumber(plan.price)}</span>
-                      <span className="kiss-plan__currency">FCFA</span>
-                    </div>
-                    <div
-                      className="kiss-plan__desc"
-                      dangerouslySetInnerHTML={{ __html: plan.description }}
-                    />
-                    {plan.benefits && (
+<div className="kiss-plan__inner">
+                      {plan.badge === 'popular' && (
+                        <div className="kiss-plan__badge">{t('kiss.plans.popular')}</div>
+                      )}
+                      {plan.badge === 'best' && (
+                        <div className="kiss-plan__badge kiss-plan__badge--gold">{t('kiss.plans.popular')}</div>
+                      )}
+                      <div className="kiss-plan__duree">{t('kiss.plans.valid')} {plan.duree}</div>
+                      <div className="kiss-plan__quantity">{formatNumber(plan.kiss)}</div>
+                      <div className="kiss-plan__label">KISS</div>
+                      <div className="kiss-plan__price">
+                        <span className="kiss-plan__amount">{formatNumber(plan.price)}</span>
+                        <span className="kiss-plan__currency">FCFA</span>
+                      </div>
                       <div
-                        className="kiss-plan__benefits"
-                        dangerouslySetInnerHTML={{ __html: plan.benefits }}
+                        className="kiss-plan__desc"
+                        dangerouslySetInnerHTML={{ __html: plan.description }}
                       />
-                    )}
-                    <button
-                      className="btn btn--gradient kiss-plan__btn"
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handlePlanBuy(plan);
-                      }}
-                    >
-                      Acheter
-                    </button>
-                  </div>
+                      {plan.benefits && (
+                        <div
+                          className="kiss-plan__benefits"
+                          dangerouslySetInnerHTML={{ __html: plan.benefits }}
+                        />
+                      )}
+                      <button
+                        className="btn btn--gradient kiss-plan__btn"
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handlePlanBuy(plan);
+                        }}
+                      >
+                        {t('common.buy')}
+                      </button>
+                    </div>
                 </Reveal>
               );
             })}
@@ -216,15 +218,15 @@ export function KissPlans({ onSelectionChange, onScrollToPayment, initialPackId,
             <div className="kiss-custom__info">
               <i className="fa-solid fa-coins"></i>
               <div>
-                <h3>Achat libre</h3>
-                <p>Choisis ta quantité. <strong>{formatNumber(CUSTOM_PRICE_PER_KISS)} FCFA / KISS</strong></p>
+                <h3>{t('kiss.custom.title')}</h3>
+                <p>{t('kiss.custom.description')} <strong>{formatNumber(CUSTOM_PRICE_PER_KISS)} {t('kiss.custom.pricePer')}</strong></p>
               </div>
             </div>
             <div className="kiss-custom__input">
               <input
                 type="number"
                 min="1"
-                placeholder="Quantité"
+                placeholder={t('kiss.custom.placeholder')}
                 value={customQty || ''}
                 onChange={handleCustomQtyChange}
                 aria-label="Quantité de KISS"
@@ -240,7 +242,7 @@ export function KissPlans({ onSelectionChange, onScrollToPayment, initialPackId,
               disabled={customQty <= 0}
               aria-label="Acheter des KISS"
             >
-              Acheter
+              {t('common.buy')}
             </button>
           </div>
         </Reveal>

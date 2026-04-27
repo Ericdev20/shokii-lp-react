@@ -1,16 +1,18 @@
-import { Reveal } from '../ui/Reveal';
-
-const items = [
-  { icon: 'fa-lock', text: 'Paiement 100% sécurisé' },
-  { icon: 'fa-bolt', text: 'KISS crédités instantanément' },
-  { icon: 'fa-headset', text: 'Support disponible 24h/24' },
-];
+import { useTranslation } from '../../hooks/useTranslation';
 
 export function KissReassurance() {
+  const { t } = useTranslation();
+
+  const items = [
+    { icon: 'fa-lock', text: t('kiss.reassurance.secure') },
+    { icon: 'fa-bolt', text: t('kiss.reassurance.instant') },
+    { icon: 'fa-headset', text: t('kiss.reassurance.support') },
+  ];
+
   return (
     <section className="kiss-reassurance">
       <div className="container">
-        <Reveal>
+        
           <div className="kiss-reassurance__grid">
             {items.map((item) => (
               <div key={item.text} className="kiss-reassurance__item">
@@ -19,7 +21,7 @@ export function KissReassurance() {
               </div>
             ))}
           </div>
-        </Reveal>
+
       </div>
     </section>
   );

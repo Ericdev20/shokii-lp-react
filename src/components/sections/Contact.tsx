@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { useTranslation } from '../../hooks/useTranslation';
 
 interface FormErrors {
   nom?: string;
@@ -7,6 +8,7 @@ interface FormErrors {
 }
 
 export function Contact() {
+  const { t } = useTranslation();
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -27,17 +29,17 @@ export function Contact() {
     const newErrors: FormErrors = {};
 
     if (!nom) {
-      newErrors.nom = 'Veuillez entrer votre nom.';
+      newErrors.nom = t('landing.contact.form.errors.nomRequired');
     }
 
     if (!email) {
-      newErrors.email = 'Veuillez entrer votre email.';
+      newErrors.email = t('landing.contact.form.errors.emailRequired');
     } else if (!validateEmail(email)) {
-      newErrors.email = 'Adresse email invalide.';
+      newErrors.email = t('landing.contact.form.errors.emailInvalid');
     }
 
     if (!message) {
-      newErrors.message = 'Veuillez entrer votre message.';
+      newErrors.message = t('landing.contact.form.errors.messageRequired');
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -48,7 +50,6 @@ export function Contact() {
     setErrors({});
     setIsSubmitting(true);
 
-    // Simulation d'envoi
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -74,19 +75,17 @@ export function Contact() {
     <section className="contact" id="contact">
       <div className="container">
 
-          <h2 className="section-title">Contactez-nous</h2>
-          <p className="section-subtitle">
-            Nous sommes là pour vous aider. Contactez-nous pour toutes vos questions.
-          </p>
+          <h2 className="section-title">{t('landing.contact.title')}</h2>
+          <p className="section-subtitle">{t('landing.contact.subtitle')}</p>
           <form className="contact__form" onSubmit={handleSubmit} noValidate>
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="nom">Nom</label>
+                <label htmlFor="nom">{t('landing.contact.form.nom')}</label>
                 <input
                   type="text"
                   id="nom"
                   name="nom"
-                  placeholder="Votre nom"
+                  placeholder={t('landing.contact.form.nomPlaceholder')}
                   style={errors.nom ? { borderColor: '#FF1F78', boxShadow: '0 0 0 4px rgba(255,31,120,0.12)' } : undefined}
                   onChange={() => handleFieldChange('nom')}
                 />
@@ -98,24 +97,24 @@ export function Contact() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="prenom">Prénom</label>
+                <label htmlFor="prenom">{t('landing.contact.form.prenom')}</label>
                 <input
                   type="text"
                   id="prenom"
                   name="prenom"
-                  placeholder="Votre prénom"
+                  placeholder={t('landing.contact.form.prenomPlaceholder')}
                 />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t('landing.contact.form.email')}</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Votre email"
+                  placeholder={t('landing.contact.form.emailPlaceholder')}
                   style={errors.email ? { borderColor: '#FF1F78', boxShadow: '0 0 0 4px rgba(255,31,120,0.12)' } : undefined}
                   onChange={() => handleFieldChange('email')}
                 />
@@ -127,23 +126,23 @@ export function Contact() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="telephone">Téléphone <span style={{ fontWeight: 400, opacity: 0.6 }}>(optionnel)</span></label>
+                <label htmlFor="telephone">{t('landing.contact.form.telephone')} <span style={{ fontWeight: 400, opacity: 0.6 }}>({t('common.optional')})</span></label>
                 <input
                   type="tel"
                   id="telephone"
                   name="telephone"
-                  placeholder="Votre téléphone"
+                  placeholder={t('landing.contact.form.telephonePlaceholder')}
                 />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group form-group--full">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">{t('landing.contact.form.message')}</label>
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Votre message"
+                  placeholder={t('landing.contact.form.messagePlaceholder')}
                   style={errors.message ? { borderColor: '#FF1F78', boxShadow: '0 0 0 4px rgba(255,31,120,0.12)' } : undefined}
                   onChange={() => handleFieldChange('message')}
                 />
@@ -162,7 +161,12 @@ export function Contact() {
                 disabled={isSubmitting}
                 style={isSubmitted ? { background: 'linear-gradient(135deg, #22c55e, #16a34a)', boxShadow: '0 4px 18px rgba(34,197,94,0.35)' } : undefined}
               >
-                {isSubmitting ? 'Envoi en cours…' : isSubmitted ? '✓ Message envoyé !' : 'Envoyer'}
+                {isSubmitting 
+                  ? t('landing.contact.form.submitting') 
+                  : isSubmitted 
+                    ? t('landing.contact.form.success') 
+                    : t('landing.contact.form.submit')
+                }
               </button>
             </div>
           </form>

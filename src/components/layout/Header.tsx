@@ -2,12 +2,15 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { mainNavItems } from '../../constants/nav';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
+import { useTranslation } from '../../hooks/useTranslation';
+import { LanguageSelector } from '../ui/LanguageSelector';
 
 const SECTION_IDS = mainNavItems
   .filter(item => item.href.startsWith('#'))
   .map(item => item.href.replace('#', ''));
 
 export function Header() {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const activeSection = useScrollSpy(SECTION_IDS);
@@ -36,7 +39,6 @@ export function Header() {
     });
   }, []);
 
-  // Close on click outside
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (
@@ -53,6 +55,11 @@ export function Header() {
     return () => document.removeEventListener('click', onClick);
   }, [isMenuOpen, closeMenu]);
 
+  const getNavLabel = (index: number): string => {
+    const keys = ['nav.home', 'nav.about', 'nav.howItWorks', 'nav.testimonials', 'nav.pricing', 'nav.contact'];
+    return t(keys[index]);
+  };
+
   return (
     <header className={`header${isScrolled ? ' is-scrolled' : ''}${isMenuOpen ? ' is-menu-open' : ''}`}>
       <div className="container header__inner">
@@ -63,10 +70,10 @@ export function Header() {
         <nav
           ref={navRef}
           className={`header__nav${isMenuOpen ? ' is-open' : ''}`}
-          aria-label="Navigation principale"
+          aria-label={t('nav.home')}
         >
           <ul>
-            {mainNavItems.map((item) => (
+            {mainNavItems.map((item, index) => (
               <li key={item.href}>
                 {item.isExternal ? (
                   <Link
@@ -74,7 +81,7 @@ export function Header() {
                     className="nav-link"
                     onClick={closeMenu}
                   >
-                    {item.label}
+                    {getNavLabel(index)}
                   </Link>
                 ) : (
                   <a
@@ -82,27 +89,32 @@ export function Header() {
                     className={`nav-link${activeSection === item.href.replace('#', '') ? ' active' : ''}`}
                     onClick={closeMenu}
                   >
-                    {item.label}
+                    {getNavLabel(index)}
                   </a>
                 )}
               </li>
             ))}
             <li className="nav-mobile-cta">
-              <a href="https://shokii.com/signup" className="btn btn--gradient">
-                Inscrivez-vous
+              <a href="#download" className="btn btn--gradient">
+                {t('header.download')}
               </a>
+            </li>
+            <li className="nav-mobile-lang">
+              <LanguageSelector flagsOnly />
             </li>
           </ul>
         </nav>
 
-        <a href="https://shokii.com/signup" className="btn btn--gradient header__cta">
-          Inscrivez-vous
+        <a href="#download" className="btn btn--gradient header__cta">
+          {t('header.download')}
         </a>
+
+        <LanguageSelector flagsOnly className="header__lang-select" />
 
         <button
           ref={burgerRef}
           className={`header__burger${isMenuOpen ? ' is-active' : ''}`}
-          aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-label={isMenuOpen ? t('header.menuClose') : t('header.menuOpen')}
           aria-expanded={isMenuOpen}
           onClick={toggleMenu}
         >

@@ -5,6 +5,7 @@ import { Hero, Features, About, HowItWorks, Download, Testimonials, Contact } fr
 import { KissPage } from './KissPage';
 import { usePageMeta, useJsonLd } from './hooks';
 import { SITE_META, KISS_META } from './constants';
+import { LanguageProvider } from './context/LanguageContext';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -67,7 +68,9 @@ function AppRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <LanguageProvider>
+        <AppRoutes />
+      </LanguageProvider>
     </BrowserRouter>
   );
 }

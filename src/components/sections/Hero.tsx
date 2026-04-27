@@ -1,19 +1,20 @@
 import { Reveal, StoreButton } from '../ui';
+import { useTranslation } from '../../hooks/useTranslation';
 
 export function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="hero" id="accueil">
       <div className="container hero__inner">
         <div className="hero__content">
           <Reveal>
             <h1>
-              Trouvez l&apos;amour<br />
-              avec <span className="gradient-text">Shokii !</span>
+              {t('landing.hero.title')}<br />
+              <span className="gradient-text">{t('landing.hero.titleLine2')}</span>
             </h1>
             <p>
-              Rejoignez des milliers de célibataires et connectez-vous avec des
-              personnes qui partagent vos valeurs. Shokii, l&apos;application de
-              rencontres qui vous correspond vraiment.
+              {t('landing.hero.subtitle')}
             </p>
           </Reveal>
         </div>
@@ -35,17 +36,17 @@ export function Hero() {
         <div className="hero__buttons">
           <StoreButton
             iconSrc="/assets/playstore.png"
-            smallLabel="Disponible sur"
-            mainLabel="Google Play"
+            smallLabel={t('landing.hero.availableOn')}
+            mainLabel={t('landing.hero.googlePlay')}
             href="#"
-            aria-label="Télécharger sur Google Play"
+            aria-label={t('landing.hero.downloadGooglePlay')}
           />
           <StoreButton
             iconSrc="/assets/Apple_Store_logo.png"
-            smallLabel="Télécharger sur"
-            mainLabel="App Store"
+            smallLabel={t('landing.hero.downloadOn')}
+            mainLabel={t('landing.hero.appStore')}
             href="#"
-            aria-label="Télécharger sur App Store"
+            aria-label={t('landing.hero.downloadAppStore')}
           />
         </div>
       </div>

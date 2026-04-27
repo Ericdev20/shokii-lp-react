@@ -1,32 +1,37 @@
 import { Reveal } from '../ui/Reveal';
+import { useTranslation } from '../../hooks/useTranslation';
 
-const reasons = [
-  { icon: 'fa-bolt', title: 'Booste ton profil', description: 'Utilise tes KISS pour apparaître en tête des résultats et multiplier tes matchs.' },
-  { icon: 'fa-gift', title: 'Envoie des cadeaux', description: 'Offre des cadeaux virtuels à tes matchs et démarque-toi avec style.' },
-  { icon: 'fa-crown', title: 'Accès premium', description: 'Débloque des fonctionnalités exclusives comme le mode incognito et les Super Likes.' },
-  { icon: 'fa-star', title: 'Super Likes', description: 'Montre un intérêt fort avec des Super Likes et augmente tes chances de match.' },
-];
+const icons = ['fa-bolt', 'fa-gift', 'fa-crown', 'fa-star'];
 
 export function KissWhyBuy() {
+  const { t } = useTranslation();
+
+  const reasons = [
+    { title: t('kiss.why.cards.0.title'), description: t('kiss.why.cards.0.description') },
+    { title: t('kiss.why.cards.1.title'), description: t('kiss.why.cards.1.description') },
+    { title: t('kiss.why.cards.2.title'), description: t('kiss.why.cards.2.description') },
+    { title: t('kiss.why.cards.3.title'), description: t('kiss.why.cards.3.description') },
+  ];
+
   return (
     <section className="kiss-why">
       <div className="container">
         <Reveal>
           <h2 className="section-title" style={{ textAlign: 'center' }}>
-            Pourquoi acheter des KISS ?
+            {t('kiss.why.title')}
           </h2>
         </Reveal>
         <Reveal>
           <p className="section-subtitle" style={{ textAlign: 'center' }}>
-            Les KISS te donnent accès à un monde de possibilités sur Shokii.
+            {t('kiss.why.subtitle')}
           </p>
         </Reveal>
 
         <div className="kiss-why__grid">
-          {reasons.map((reason) => (
+          {reasons.map((reason, index) => (
             <Reveal key={reason.title} className="kiss-why__card">
               <div className="kiss-why__card-icon">
-                <i className={`fa-solid ${reason.icon}`}></i>
+                <i className={`fa-solid ${icons[index]}`}></i>
               </div>
               <h3>{reason.title}</h3>
               <p>{reason.description}</p>

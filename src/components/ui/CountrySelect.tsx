@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { useTranslation } from '../../hooks/useTranslation';
 import type { Country } from '../../hooks/useCountries';
 
 function normalizeString(str: string): string {
@@ -25,6 +26,7 @@ export function CountrySelect({
   error,
   onRetry,
 }: CountrySelectProps) {
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
@@ -100,7 +102,7 @@ export function CountrySelect({
   if (disabled) {
     return (
       <div className="kiss-form__select-skeleton">
-        <span className="skeleton-text">Chargement des pays...</span>
+        <span className="skeleton-text">{t('countrySelect.loading')}</span>
       </div>
     );
   }
@@ -111,7 +113,7 @@ export function CountrySelect({
         <span>{error}</span>
         {onRetry && (
           <button type="button" onClick={onRetry} className="kiss-form__retry">
-            Réessayer
+            {t('countrySelect.retry')}
           </button>
         )}
       </div>
@@ -129,7 +131,7 @@ export function CountrySelect({
         }}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        aria-label="Sélectionner un pays"
+        aria-label={t('countrySelect.placeholder')}
       >
         {selectedCountry ? (
           <>
@@ -137,7 +139,7 @@ export function CountrySelect({
             <span className="country-select__name">{selectedCountry.name}</span>
           </>
         ) : (
-          <span className="country-select__placeholder">Sélectionner un pays</span>
+          <span className="country-select__placeholder">{t('countrySelect.placeholder')}</span>
         )}
         <i className={`fa-solid fa-chevron-down country-select__arrow ${isOpen ? 'is-open' : ''}`} />
       </button>
@@ -155,19 +157,19 @@ export function CountrySelect({
                 setHighlightedIndex(0);
               }}
               onKeyDown={handleKeyDown}
-              placeholder="Rechercher un pays..."
+              placeholder={t('countrySelect.search')}
               autoFocus
-              aria-label="Rechercher un pays"
+              aria-label={t('countrySelect.search')}
             />
           </div>
           <ul
             ref={listRef}
             className="country-select__list"
             role="listbox"
-            aria-label="Liste des pays"
+            aria-label={t('countrySelect.placeholder')}
           >
             {filteredCountries.length === 0 ? (
-              <li className="country-select__empty">Aucun pays trouvé</li>
+              <li className="country-select__empty">{t('countrySelect.noResults')}</li>
             ) : (
               filteredCountries.map((country, index) => (
                 <li

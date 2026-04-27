@@ -1,31 +1,31 @@
 import { Reveal, StoreButton } from '../ui';
+import { useTranslation } from '../../hooks/useTranslation';
 
 export function Download() {
+  const { t } = useTranslation();
+
   return (
-    <section className="download">
+    <section className="download" id="download">
       <div className="container download__inner">
         <div className="download__content">
           <Reveal>
-            <h2>Téléchargez<br />maintenant</h2>
-            <p>
-              Rejoignez-nous sur notre application mobile. Créez un compte
-              gratuitement et commencez dès maintenant à trouver l&apos;amour.
-            </p>
+            <h2>{t('landing.download.title')}</h2>
+            <p>{t('landing.download.subtitle')}</p>
             <div className="download__buttons">
               <StoreButton
                 iconSrc="/assets/playstore.png"
-                smallLabel="Disponible sur"
-                mainLabel="Google Play"
+                smallLabel={t('landing.download.availableOn')}
+                mainLabel={t('landing.download.googlePlay')}
                 href="#"
-                aria-label="Télécharger sur Google Play"
+                aria-label={t('landing.download.downloadGooglePlay')}
                 variant="light"
               />
               <StoreButton
                 iconSrc="/assets/Apple_Store_logo.png"
-                smallLabel="Télécharger sur"
-                mainLabel="App Store"
+                smallLabel={t('landing.download.downloadOn')}
+                mainLabel={t('landing.download.appStore')}
                 href="#"
-                aria-label="Télécharger sur App Store"
+                aria-label={t('landing.download.downloadAppStore')}
                 variant="light"
               />
             </div>

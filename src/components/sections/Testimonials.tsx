@@ -1,8 +1,59 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { Reveal } from '../ui';
-import { testimonials, SIGNUP_URL } from '../../constants';
+import { useTranslation } from '../../hooks/useTranslation';
+import type { Testimonial } from '../../types';
+
+const testimonialsFr: Testimonial[] = [
+  {
+    username: 'Marie',
+    age: 28,
+    quote: "J'ai trouvé mon âme sœur sur Shokii ! L'app est super facile à utiliser.",
+    avatarInitial: 'M',
+    avatarBg: 'linear-gradient(135deg, #FF6B9D, #C77DFF)',
+  },
+  {
+    username: 'Jean',
+    age: 32,
+    quote: "Incroyable, j'ai matché avec quelqu'un qui partage mes intérêts !",
+    avatarInitial: 'J',
+    avatarBg: 'linear-gradient(135deg, #FF3F8E, #A333C8)',
+  },
+  {
+    username: 'Sophie',
+    age: 25,
+    quote: "Merci Shokii, je suis en couple grâce à vous !",
+    avatarInitial: 'S',
+    avatarBg: 'linear-gradient(135deg, #FF1F78, #8B2FC9)',
+  },
+];
+
+const testimonialsEn: Testimonial[] = [
+  {
+    username: 'Marie',
+    age: 28,
+    quote: "I found my soulmate on Shokii! The app is super easy to use.",
+    avatarInitial: 'M',
+    avatarBg: 'linear-gradient(135deg, #FF6B9D, #C77DFF)',
+  },
+  {
+    username: 'Jean',
+    age: 32,
+    quote: "Amazing, I matched with someone who shares my interests!",
+    avatarInitial: 'J',
+    avatarBg: 'linear-gradient(135deg, #FF3F8E, #A333C8)',
+  },
+  {
+    username: 'Sophie',
+    age: 25,
+    quote: "Thanks Shokii, I'm in a relationship thanks to you!",
+    avatarInitial: 'S',
+    avatarBg: 'linear-gradient(135deg, #FF1F78, #8B2FC9)',
+  },
+];
 
 export function Testimonials() {
+  const { t, isFrench } = useTranslation();
+  const currentTestimonials = isFrench ? testimonialsFr : testimonialsEn;
   const trackRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -37,17 +88,14 @@ export function Testimonials() {
     <section className="testimonials" id="temoignages">
       <div className="container">
         <Reveal>
-          <h2 className="section-title">
-            Des milliers de rencontres ont commencé sur Shokii…<br />
-            et certaines deviennent de vraies histoires d&apos;amour.
-          </h2>
+          <h2 className="section-title">{t('landing.testimonials.title')}</h2>
         </Reveal>
 
         <Reveal>
           <div
             className="testimonials__slider"
             role="region"
-            aria-label="Témoignages d&apos;utilisateurs"
+            aria-label={t('landing.testimonials.aria.label')}
           >
             <div
               className="testimonials__track"
@@ -59,11 +107,11 @@ export function Testimonials() {
                 setTimeout(() => setIsPaused(false), 2000);
               }}
             >
-              {testimonials.map((testimonial, index) => (
+              {currentTestimonials.map((testimonial, index) => (
                 <article
                   key={index}
                   className="testimonial-card"
-                  aria-label={`Témoignage de ${testimonial.username}`}
+                  aria-label={`${t('landing.testimonials.aria.item')} ${testimonial.username}`}
                 >
                   <div className="testimonial-card__header">
                     <div
@@ -75,10 +123,10 @@ export function Testimonials() {
                     </div>
                     <div className="testimonial-card__meta">
                       <h3>{testimonial.username}</h3>
-                      {testimonial.age && <span>{testimonial.age} ans</span>}
+                      {testimonial.age && <span>{testimonial.age} {t('landing.testimonials.yearsOld')}</span>}
                     </div>
                   </div>
-                  <div className="testimonial-card__stars" aria-label="5 étoiles sur 5" role="img">
+                  <div className="testimonial-card__stars" aria-label={t('landing.testimonials.aria.stars')} role="img">
                     <span aria-hidden="true">★★★★★</span>
                   </div>
                   <blockquote className="testimonial-card__quote">
@@ -92,11 +140,9 @@ export function Testimonials() {
 
         <Reveal>
           <div className="testimonials__cta">
-            <p className="testimonials__cta-text">
-              Et si la prochaine rencontre était la vôtre ?
-            </p>
-            <a href={SIGNUP_URL} className="btn btn--gradient">
-              Inscrivez-vous
+            <p className="testimonials__cta-text">{t('landing.testimonials.subtitle')}</p>
+            <a href="#download" className="btn btn--gradient">
+              {t('landing.testimonials.cta')}
             </a>
           </div>
         </Reveal>
