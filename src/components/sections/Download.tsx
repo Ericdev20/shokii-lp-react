@@ -1,8 +1,15 @@
-import { Reveal, StoreButton } from '../ui';
+import { useState } from 'react';
+import { Reveal, StoreButton, AppStoreModal } from '../ui';
 import { useTranslation } from '../../hooks/useTranslation';
 
 export function Download() {
   const { t } = useTranslation();
+  const [isAppStoreModalOpen, setIsAppStoreModalOpen] = useState(false);
+
+  const handleAppStoreClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsAppStoreModalOpen(true);
+  };
 
   return (
     <section className="download" id="download">
@@ -16,15 +23,16 @@ export function Download() {
                 iconSrc="/assets/playstore.png"
                 smallLabel={t('landing.download.availableOn')}
                 mainLabel={t('landing.download.googlePlay')}
-                href="#"
+                href="https://play.google.com/store/apps/details?id=com.shokii_app.app"
                 aria-label={t('landing.download.downloadGooglePlay')}
                 variant="light"
               />
               <StoreButton
-                iconSrc="/assets/Apple_Store_logo.png"
+                iconSrc="/assets/pomme.png"
                 smallLabel={t('landing.download.downloadOn')}
                 mainLabel={t('landing.download.appStore')}
                 href="#"
+                onClick={handleAppStoreClick}
                 aria-label={t('landing.download.downloadAppStore')}
                 variant="light"
               />
@@ -38,6 +46,11 @@ export function Download() {
           </Reveal>
         </div>
       </div>
+
+      <AppStoreModal
+        isOpen={isAppStoreModalOpen}
+        onClose={() => setIsAppStoreModalOpen(false)}
+      />
     </section>
   );
 }

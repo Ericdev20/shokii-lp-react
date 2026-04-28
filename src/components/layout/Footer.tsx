@@ -1,9 +1,16 @@
+import { useState } from 'react';
 import { footerNavItems } from '../../constants/nav';
 import { useTranslation } from '../../hooks/useTranslation';
-import { LanguageSelector } from '../ui/LanguageSelector';
+import { LanguageSelector, AppStoreModal } from '../ui';
 
 export function Footer() {
   const { t } = useTranslation();
+  const [isAppStoreModalOpen, setIsAppStoreModalOpen] = useState(false);
+
+  const handleAppStoreClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsAppStoreModalOpen(true);
+  };
 
   return (
     <footer className="footer">
@@ -25,10 +32,10 @@ export function Footer() {
         <div className="footer__col">
           <h4>{t('footer.help.title')}</h4>
           <ul>
-            <li><a href="#">{t('footer.help.moreInfo')}</a></li>
-            <li><a href="#">{t('footer.help.faq')}</a></li>
-            <li><a href="#">{t('footer.privacy')}</a></li>
-            <li><a href="#">{t('footer.terms')}</a></li>
+            <li><a target="_blank" href="https://shokii.com/legal-notice">{t('footer.help.legal')}</a></li>
+            <li><a target="_blank" href="https://shokii.com/faq">{t('footer.help.faq')}</a></li>
+            <li><a target="_blank" href="https://shokii.com/privacy-policy">{t('footer.privacy')}</a></li>
+            <li><a target="_blank" href="https://shokii.com/terms-of-use">{t('footer.terms')}</a></li>
           </ul>
         </div>
 
@@ -43,14 +50,23 @@ export function Footer() {
             </li>
           </ul>
           <div className="footer__stores">
-            <a href="#" className="footer__store-btn" aria-label={t('footer.downloadGooglePlay')}>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.shokii_app.app"
+              className="footer__store-btn"
+              aria-label={t('footer.downloadGooglePlay')}
+            >
               <img src="/assets/playstore.png" alt="" aria-hidden="true" />
               <span>
                 <small>{t('footer.availableOn')}</small>
                 Google Play
               </span>
             </a>
-            <a href="#" className="footer__store-btn" aria-label={t('footer.downloadAppStore')}>
+            <a
+              href="#"
+              className="footer__store-btn"
+              onClick={handleAppStoreClick}
+              aria-label={t('footer.downloadAppStore')}
+            >
               <img src="/assets/Apple_Store_logo.png" alt="" aria-hidden="true" />
               <span>
                 <small>{t('footer.downloadOn')}</small>
@@ -60,7 +76,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="footer__col footer__col--language">
+        <div className="footer__col footer__col--language mb-3">
           <LanguageSelector />
         </div>
       </div>
@@ -71,6 +87,11 @@ export function Footer() {
           <p>&copy; 2026 Shokii. {t('footer.copyright')}</p>
         </div>
       </div>
+
+      <AppStoreModal
+        isOpen={isAppStoreModalOpen}
+        onClose={() => setIsAppStoreModalOpen(false)}
+      />
     </footer>
   );
 }

@@ -63,7 +63,7 @@ export function Header() {
   return (
     <header className={`header${isScrolled ? ' is-scrolled' : ''}${isMenuOpen ? ' is-menu-open' : ''}`}>
       <div className="container header__inner">
-        <a href="#accueil" className="header__logo">
+        <a href="/#accueil" className="header__logo">
           <img src="/assets/shokii.png" alt="Shokii" />
         </a>
 
@@ -95,7 +95,7 @@ export function Header() {
               </li>
             ))}
             <li className="nav-mobile-cta">
-              <a href="#download" className="btn btn--gradient">
+              <a href="/#download" className="btn btn--gradient">
                 {t('header.download')}
               </a>
             </li>
@@ -104,12 +104,16 @@ export function Header() {
             </li>
           </ul>
         </nav>
-
-        <a href="#download" className="btn btn--gradient header__cta">
+        <div className="header__actions">
+        
+         <LanguageSelector flagsOnly className="header__lang-select" />
+          
+        <a href="/#download" className="btn btn--gradient header__cta">
           {t('header.download')}
         </a>
+        </div>
+    
 
-        <LanguageSelector flagsOnly className="header__lang-select" />
 
         <button
           ref={burgerRef}

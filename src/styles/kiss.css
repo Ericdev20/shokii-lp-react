@@ -902,7 +902,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 ────────────────────────────────────────────────────────── */
 .kiss-reassurance {
   padding: 40px 0;
-  background: var(--bg-light);
+  background: rgba(255, 31, 120, 0.1);
+  /* background: var(--bg-light); */
   border-top: 1px solid var(--border);
 }
 

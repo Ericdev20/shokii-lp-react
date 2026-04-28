@@ -1,5 +1,4 @@
 import { KissHeader } from './components/layout/KissHeader';
-import { KissFooter } from './components/layout/KissFooter';
 import { KissHero } from './components/sections/KissHero';
 import { KissWhyBuy } from './components/sections/KissWhyBuy';
 import { KissPlans } from './components/sections/KissPlans';
@@ -9,6 +8,7 @@ import { usePaymentSession } from './hooks/usePaymentSession';
 import { parseKissParams } from './hooks/useKissParams';
 import { useState, useCallback, useRef, useMemo } from 'react';
 import type { PlanSelection } from './components/sections/KissPlans';
+import { Footer } from './components/layout';
 
 export function KissPage() {
   const session = usePaymentSession();
@@ -58,7 +58,7 @@ export function KissPage() {
         </section>
         <KissReassurance />
       </main>
-      <KissFooter />
+      <Footer />
     </>
   );
 }

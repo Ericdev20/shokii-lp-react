@@ -15,6 +15,23 @@ function ScrollToTop() {
   return null;
 }
 
+function HashScroll() {
+  const { hash } = useLocation();
+  
+  useEffect(() => {
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [hash]);
+  
+  return null;
+}
+
 function PageMeta({ route }: { route: string }) {
   if (route === '/kiss') {
     usePageMeta({
@@ -57,6 +74,7 @@ function AppRoutes() {
   return (
     <>
       <ScrollToTop />
+      <HashScroll />
       <Routes>
         <Route path="/" element={<><PageMeta route="/" /><LandingPage /></>} />
         <Route path="/kiss" element={<><PageMeta route="/kiss" /><KissPage /></>} />

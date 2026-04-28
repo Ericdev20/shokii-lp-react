@@ -1,8 +1,15 @@
-import { Reveal, StoreButton } from '../ui';
+import { useState } from 'react';
+import { Reveal, StoreButton, AppStoreModal } from '../ui';
 import { useTranslation } from '../../hooks/useTranslation';
 
 export function Hero() {
   const { t } = useTranslation();
+  const [isAppStoreModalOpen, setIsAppStoreModalOpen] = useState(false);
+
+  const handleAppStoreClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsAppStoreModalOpen(true);
+  };
 
   return (
     <section className="hero" id="accueil">
@@ -38,7 +45,7 @@ export function Hero() {
             iconSrc="/assets/playstore.png"
             smallLabel={t('landing.hero.availableOn')}
             mainLabel={t('landing.hero.googlePlay')}
-            href="#"
+            href="https://play.google.com/store/apps/details?id=com.shokii_app.app"
             aria-label={t('landing.hero.downloadGooglePlay')}
           />
           <StoreButton
@@ -46,10 +53,16 @@ export function Hero() {
             smallLabel={t('landing.hero.downloadOn')}
             mainLabel={t('landing.hero.appStore')}
             href="#"
+            onClick={handleAppStoreClick}
             aria-label={t('landing.hero.downloadAppStore')}
           />
         </div>
       </div>
+
+      <AppStoreModal
+        isOpen={isAppStoreModalOpen}
+        onClose={() => setIsAppStoreModalOpen(false)}
+      />
     </section>
   );
 }

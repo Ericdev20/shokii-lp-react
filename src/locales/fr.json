@@ -302,6 +302,8 @@
       "title": "Aide et support",
       "usefulLinks": "Liens utiles",
       "moreInfo": "Plus d'informations sur nos services",
+    "legal": "Mentions légales",
+
       "faq": "FAQ"
     },
     "contactUs": "Contactez-nous",
@@ -322,5 +324,12 @@
     "testimonials": "Témoignages",
     "pricing": "Tarifs",
     "contact": "Contact"
+  },
+  "modal": {
+    "appStore": {
+      "title": "Bientôt disponible sur l'App Store",
+      "continueWeb": "Continuer avec le web",
+      "close": "Fermer"
+    }
   }
 }
