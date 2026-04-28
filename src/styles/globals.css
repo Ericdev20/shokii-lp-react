@@ -618,8 +618,9 @@ button {
    7. FONCTIONNALITÉS
 ────────────────────────────────────────────────────────── */
 .features {
+  background: linear-gradient(135deg, #bd0060 0%, #7c10c5 55%, #4a0094 100%);
   padding: 60px 0;
-  background: var(--white);
+  /* background: var(--white); */
   overflow: visible;
   /* Prevent mockups from being clipped */
 }
@@ -628,10 +629,10 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
-  background: linear-gradient(135deg, #bd0060 0%, #7c10c5 55%, #4a0094 100%);
+  /* background: linear-gradient(135deg, #bd0060 0%, #7c10c5 55%, #4a0094 100%); */
   border-radius: 40px;
   padding: 60px 48px;
-  box-shadow: var(--shadow-md);
+  /* box-shadow: var(--shadow-md); */
 }
 
 .features__left h2 {

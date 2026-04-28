@@ -24,7 +24,7 @@ export function Features() {
 
   return (
     <section className="features" id="fonctionnalites">
-      <div className="features__inner">
+      <div className="features__inner container">
         <div className="features__left">
           <Reveal>
             <h2>{t('landing.features.title')}</h2>
