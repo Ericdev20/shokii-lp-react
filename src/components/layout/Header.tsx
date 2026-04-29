@@ -95,7 +95,7 @@ export function Header() {
               </li>
             ))}
             <li className="nav-mobile-cta">
-              <a href="/#download" className="btn btn--gradient">
+              <a href="/#download" className="btn btn--gradient" onClick={closeMenu}>
                 {t('header.download')}
               </a>
             </li>
@@ -111,7 +111,7 @@ export function Header() {
           
             <LanguageSelector flagsOnly className="header__lang-select" />
             
-            <a href="/#download" className="btn btn--gradient header__cta">
+            <a href="/#download" className="btn btn--gradient header__cta" onClick={closeMenu}>
               {t('header.download')}
             </a>
           </div>
