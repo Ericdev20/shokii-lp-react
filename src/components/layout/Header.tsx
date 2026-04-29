@@ -95,7 +95,7 @@ export function Header() {
               </li>
             ))}
             <li className="nav-mobile-cta">
-              <a href="/#download" className="btn btn--gradient" onClick={closeMenu}>
+              <a href="/#download" className="btn btn--gradient">
                 {t('header.download')}
               </a>
             </li>
@@ -104,28 +104,34 @@ export function Header() {
             </li>
           </ul>
         </nav>
+
         <div className="header__actions">
-        
-         <LanguageSelector flagsOnly className="header__lang-select" />
+
+          <div className="header__actions">
           
-        <a href="/#download" className="btn btn--gradient header__cta">
-          {t('header.download')}
-        </a>
+            <LanguageSelector flagsOnly className="header__lang-select" />
+            
+            <a href="/#download" className="btn btn--gradient header__cta">
+              {t('header.download')}
+            </a>
+          </div>
+      
+
+
+          <button
+            ref={burgerRef}
+            className={`header__burger${isMenuOpen ? ' is-active' : ''}`}
+            aria-label={isMenuOpen ? t('header.menuClose') : t('header.menuOpen')}
+            aria-expanded={isMenuOpen}
+            onClick={toggleMenu}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
-    
 
-
-        <button
-          ref={burgerRef}
-          className={`header__burger${isMenuOpen ? ' is-active' : ''}`}
-          aria-label={isMenuOpen ? t('header.menuClose') : t('header.menuOpen')}
-          aria-expanded={isMenuOpen}
-          onClick={toggleMenu}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        
       </div>
     </header>
   );

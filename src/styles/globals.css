@@ -1631,7 +1631,7 @@ button {
 
   /* Hide language selector in header on mobile */
   .header__lang-select {
-    display: none !important;
+    display: inline-block !important;
   }
 
   .header__burger {
