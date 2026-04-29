@@ -95,7 +95,7 @@ export function Header() {
               </li>
             ))}
             <li className="nav-mobile-cta">
-              <a href="/#download" className="btn btn--gradient">
+              <a href="/#download" className="btn btn--gradient" onClick={closeMenu}>
                 {t('header.download')}
               </a>
             </li>
