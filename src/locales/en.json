@@ -192,8 +192,8 @@
       "subtitle": "KISS gives you access to a world of possibilities on Shokii.",
       "cards": [
         {
-          "title": "Boost Your Profile",
-          "description": "Use your KISS to appear at the top of results and multiply your matches."
+          "title": "Connect with singles",
+          "description": "Join thousands of active singles and create meaningful connections on Shokii."
         },
         {
           "title": "Send Gifts",
@@ -204,8 +204,8 @@
           "description": "Unlock exclusive features like incognito mode and Super Likes."
         },
         {
-          "title": "Super Likes",
-          "description": "Show strong interest with Super Likes and increase your match chances."
+          "title": "Videos & Live",
+          "description": "Watch videos and join live sessions to connect and interact in real-time."
         }
       ]
     },
@@ -313,7 +313,7 @@
     "downloadOn": "Download on"
   },
   "header": {
-    "download": "Download",
+    "download": "Sign up",
     "menuOpen": "Open menu",
     "menuClose": "Close menu"
   },

@@ -1,7 +1,7 @@
 import { Reveal } from '../ui/Reveal';
 import { useTranslation } from '../../hooks/useTranslation';
 
-const icons = ['fa-bolt', 'fa-gift', 'fa-crown', 'fa-star'];
+const icons = ['fa-heart', 'fa-gift', 'fa-crown', 'fa-video'];
 
 export function KissWhyBuy() {
   const { t } = useTranslation();
